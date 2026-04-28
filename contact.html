@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Get in touch with Russell Franklin - Open to collaboration on engineering projects. Connect via email, LinkedIn, or GitHub.">
     <title>Portfolio | Contact</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9881;</text></svg>">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body class="contact-page">
+<body>
     <header>
         <nav class="container">
             <a href="index.html" class="logo">RF.</a>
@@ -59,6 +60,35 @@
                     <a href="https://github.com/russellfranklin" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%;">View Repos</a>
                 </div>
             </div>
+
+            <form class="contact-form" id="contactForm" novalidate>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="" disabled selected>Select a topic</option>
+                        <option value="collaboration">Project Collaboration</option>
+                        <option value="consulting">Engineering Consulting</option>
+                        <option value="speaking">Speaking / Consulting</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell me about your project or idea..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                <div class="form-success" id="formSuccess">
+                    &#10003; Message ready! Your email client will open to send.
+                </div>
+            </form>
         </section>
     </main>
 

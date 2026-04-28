@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore Russell Franklin's engineering projects showcasing distributed systems, cloud infrastructure, automation, and data engineering solutions.">
     <title>Portfolio | Projects</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9881;</text></svg>">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,48 +39,325 @@
             </p>
 
             <div class="bento-grid">
-                <div class="card">
+                <!-- Project Alpha -->
+                <div class="card grid-span-2">
+                    <div class="project-illustration">
+                        <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="pg1" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(30,58,95,0.25)" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="800" height="450" fill="url(#pg1)"/>
+
+                            <text x="20" y="25" class="dwg-accent-text" font-size="10" font-weight="600">PROJECT ALPHA -- Message Processing Pipeline</text>
+                            <line x1="20" y1="30" x2="350" y2="30" stroke="var(--color-accent)" stroke-width="0.5" opacity="0.3"/>
+
+                            <!-- Producer node -->
+                            <rect x="50" y="80" width="160" height="100" rx="8" fill="rgba(14,165,233,0.1)" stroke="var(--color-accent)" stroke-width="1.5"/>
+                            <circle cx="130" cy="110" r="12" fill="rgba(6,182,212,0.15)" stroke="var(--color-accent-teal)" stroke-width="1"/>
+                            <text x="130" y="114" class="dwg-accent-text" text-anchor="middle" font-size="8">&#9650;</text>
+                            <text x="130" y="145" class="dwg-text" text-anchor="middle">PRODUCER</text>
+                            <text x="130" y="160" class="dwg-text" text-anchor="middle" fill="var(--color-text-subtle)" font-size="6">Rust / gRPC</text>
+
+                            <!-- Topic partitions -->
+                            <text x="330" y="120" class="dwg-text" font-size="8" font-weight="600">TOPIC: orders-processing</text>
+                            <text x="330" y="132" class="dwg-text" fill="var(--color-text-subtle)" font-size="6">PARTITIONS: 8 | REPLICAS: 3</text>
+
+                            <!-- Partition boxes -->
+                            <rect x="310" y="145" width="60" height="40" rx="4" fill="rgba(14,165,233,0.08)" stroke="var(--color-accent)" stroke-width="1"/>
+                            <text x="340" y="169" class="dwg-accent-text" text-anchor="middle" font-size="7" font-family="'JetBrains Mono', monospace">P0</text>
+                            <rect x="382" y="145" width="60" height="40" rx="4" fill="rgba(6,182,212,0.08)" stroke="var(--color-accent-teal)" stroke-width="1"/>
+                            <text x="412" y="169" class="dwg-accent-text" text-anchor="middle" font-size="7" font-family="'JetBrains Mono', monospace">P1</text>
+                            <rect x="454" y="145" width="60" height="40" rx="4" fill="rgba(14,165,233,0.08)" stroke="var(--color-accent)" stroke-width="1"/>
+                            <text x="484" y="169" class="dwg-accent-text" text-anchor="middle" font-size="7" font-family="'JetBrains Mono', monospace">P2</text>
+                            <rect x="526" y="145" width="60" height="40" rx="4" fill="rgba(6,182,212,0.08)" stroke="var(--color-accent-teal)" stroke-width="1"/>
+                            <text x="556" y="169" class="dwg-accent-text" text-anchor="middle" font-size="7" font-family="'JetBrains Mono', monospace">P3</text>
+
+                            <!-- Partition bars (throughput visualization) -->
+                            <rect x="322" y="192" width="12" height="50" fill="rgba(14,165,233,0.6)" rx="2"/>
+                            <rect x="338" y="208" width="12" height="34" fill="rgba(6,182,212,0.5)" rx="2"/>
+                            <rect x="354" y="200" width="12" height="42" fill="rgba(14,165,233,0.6)" rx="2"/>
+                            <rect x="370" y="206" width="12" height="36" fill="rgba(6,182,212,0.5)" rx="2"/>
+                            <rect x="386" y="196" width="12" height="46" fill="rgba(14,165,233,0.6)" rx="2"/>
+                            <rect x="402" y="210" width="12" height="32" fill="rgba(6,182,212,0.5)" rx="2"/>
+                            <rect x="418" y="203" width="12" height="39" fill="rgba(14,165,233,0.6)" rx="2"/>
+                            <rect x="434" y="213" width="12" height="29" fill="rgba(6,182,212,0.5)" rx="2"/>
+                            <rect x="454" y="198" width="12" height="44" fill="rgba(14,165,233,0.6)" rx="2"/>
+                            <rect x="470" y="205" width="12" height="37" fill="rgba(6,182,212,0.5)" rx="2"/>
+                            <rect x="486" y="193" width="12" height="48" fill="rgba(14,165,233,0.6)" rx="2"/>
+                            <rect x="502" y="208" width="12" height="33" fill="rgba(6,182,212,0.5)" rx="2"/>
+                            <rect x="522" y="201" width="12" height="40" fill="rgba(14,165,233,0.6)" rx="2"/>
+                            <rect x="538" y="206" width="12" height="35" fill="rgba(6,182,212,0.5)" rx="2"/>
+
+                            <!-- Consumer nodes -->
+                            <rect x="610" y="80" width="160" height="100" rx="8" fill="rgba(6,182,212,0.1)" stroke="var(--color-accent-teal)" stroke-width="1.5"/>
+                            <circle cx="690" cy="110" r="12" fill="rgba(14,165,233,0.15)" stroke="var(--color-accent)" stroke-width="1"/>
+                            <text x="690" y="114" class="dwg-accent-text" text-anchor="middle" font-size="8">&#9660;</text>
+                            <text x="690" y="145" class="dwg-text" text-anchor="middle">CONSUMER</text>
+                            <text x="690" y="160" class="dwg-text" text-anchor="middle" fill="var(--color-text-subtle)" font-size="6">ClickHouse / Flink</text>
+
+                            <!-- Flow arrows -->
+                            <path d="M 210 130 Q 270 130 310 165" stroke="var(--color-accent-light)" stroke-width="1" fill="none" stroke-dasharray="5 3"/>
+                            <path d="M 586 165 Q 600 140 610 130" stroke="var(--color-accent-light)" stroke-width="1" fill="none" stroke-dasharray="5 3"/>
+
+                            <!-- Throughput annotation -->
+                            <text x="400" y="270" class="dwg-text" text-anchor="middle" font-size="8">THROUGHPUT: 1.2M msg/s</text>
+                            <text x="400" y="285" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="500">LATENCY P99: 2.4ms</text>
+
+                            <!-- Connection lines -->
+                            <line x1="130" y1="180" x2="130" y2="340" stroke="var(--color-border-light)" stroke-width="0.5" stroke-dasharray="3 2"/>
+                            <line x1="130" y1="340" x2="670" y2="340" stroke="var(--color-border-light)" stroke-width="0.5"/>
+                            <line x1="670" y1="340" x2="670" y2="180" stroke="var(--color-border-light)" stroke-width="0.5" stroke-dasharray="3 2"/>
+
+                            <!-- Bottom annotation box -->
+                            <rect x="280" y="350" width="240" height="50" rx="6" fill="rgba(8,13,24,0.6)" stroke="rgba(30,58,95,0.3)" stroke-width="1"/>
+                            <text x="400" y="372" class="dwg-accent-text" text-anchor="middle" font-size="7" font-weight="600">HIGH-THROUGHPUT MESSAGE ENGINE</text>
+                            <text x="400" y="387" class="dwg-text" text-anchor="middle" font-size="6">Rust Workers | Kafka Cluster | gRPC Stream</text>
+
+                            <!-- Decorative corner marks -->
+                            <path d="M 20 420 L 20 430 L 30 430" stroke="var(--color-accent)" stroke-width="1" opacity="0.3"/>
+                            <path d="M 780 420 L 780 430 L 770 430" stroke="var(--color-accent)" stroke-width="1" opacity="0.3"/>
+                        </svg>
+                    </div>
                     <span class="metric-badge" style="color: #4ade80;">Distributed Systems</span>
                     <span class="status-badge status-production">Production</span>
                     <h3>Project Alpha</h3>
                     <p>Engineered a high-throughput message processing engine capable of handling 1M+ requests per second using Rust and Kafka.</p>
-                    <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
                         <span class="tech-badge">Rust</span>
                         <span class="tech-badge">Kafka</span>
                         <span class="tech-badge">gRPC</span>
+                        <span class="tech-badge">ClickHouse</span>
                     </div>
                 </div>
 
+                <!-- Project Beta -->
                 <div class="card">
+                    <div class="project-illustration">
+                        <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="pg2" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(30,58,95,0.25)" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="800" height="450" fill="url(#pg2)"/>
+
+                            <text x="20" y="25" class="dwg-accent-text" font-size="10" font-weight="600">PROJECT BETA -- Multi-Region Topology</text>
+                            <line x1="20" y1="30" x2="350" y2="30" stroke="var(--color-accent)" stroke-width="0.5" opacity="0.3"/>
+
+                            <!-- Central hub -->
+                            <circle cx="400" cy="225" r="50" fill="rgba(14,165,233,0.1)" stroke="var(--color-accent)" stroke-width="2"/>
+                            <circle cx="400" cy="225" r="30" fill="none" stroke="var(--color-accent-light)" stroke-width="1" stroke-dasharray="4 2" opacity="0.5"/>
+                            <text x="400" y="222" class="dwg-accent-text" text-anchor="middle" font-size="9" font-weight="600">LBS</text>
+                            <text x="400" y="236" class="dwg-text" text-anchor="middle" font-size="6">Load Balancer</text>
+
+                            <!-- Region circles -->
+                            <circle cx="200" cy="130" r="45" fill="rgba(6,182,212,0.08)" stroke="var(--color-accent-teal)" stroke-width="1.5"/>
+                            <circle cx="200" cy="130" r="20" fill="rgba(6,182,212,0.15)" stroke="var(--color-accent-teal)" stroke-width="1"/>
+                            <text x="200" y="128" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">US-EAST</text>
+                            <text x="200" y="140" class="dwg-text" text-anchor="middle" font-size="6">Virginia</text>
+                            <text x="200" y="160" class="dwg-text" text-anchor="middle" font-size="6" fill="var(--color-accent)">23ms</text>
+
+                            <circle cx="200" cy="320" r="45" fill="rgba(14,165,233,0.08)" stroke="var(--color-accent)" stroke-width="1.5"/>
+                            <circle cx="200" cy="320" r="20" fill="rgba(14,165,233,0.15)" stroke="var(--color-accent)" stroke-width="1"/>
+                            <text x="200" y="318" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">US-WEST</text>
+                            <text x="200" y="330" class="dwg-text" text-anchor="middle" font-size="6">Oregon</text>
+                            <text x="200" y="350" class="dwg-text" text-anchor="middle" font-size="6" fill="var(--color-accent)">31ms</text>
+
+                            <circle cx="600" cy="130" r="45" fill="rgba(6,182,212,0.08)" stroke="var(--color-accent-teal)" stroke-width="1.5"/>
+                            <circle cx="600" cy="130" r="20" fill="rgba(6,182,212,0.15)" stroke="var(--color-accent-teal)" stroke-width="1"/>
+                            <text x="600" y="128" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">EU-WEST</text>
+                            <text x="600" y="140" class="dwg-text" text-anchor="middle" font-size="6">Ireland</text>
+                            <text x="600" y="160" class="dwg-text" text-anchor="middle" font-size="6" fill="var(--color-accent)">67ms</text>
+
+                            <circle cx="600" cy="320" r="45" fill="rgba(14,165,233,0.08)" stroke="var(--color-accent)" stroke-width="1.5"/>
+                            <circle cx="600" cy="320" r="20" fill="rgba(14,165,233,0.15)" stroke="var(--color-accent)" stroke-width="1"/>
+                            <text x="600" y="318" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">APAC</text>
+                            <text x="600" y="330" class="dwg-text" text-anchor="middle" font-size="6">Tokyo</text>
+                            <text x="600" y="350" class="dwg-text" text-anchor="middle" font-size="6" fill="var(--color-accent)">89ms</text>
+
+                            <!-- Connection lines -->
+                            <line x1="235" y1="155" x2="360" y2="210" class="dwg-accent-light" stroke-width="1"/>
+                            <line x1="235" y1="295" x2="360" y2="240" class="dwg-accent-light" stroke-width="1"/>
+                            <line x1="565" y1="155" x2="440" y2="210" class="dwg-accent-light" stroke-width="1"/>
+                            <line x1="565" y1="295" x2="440" y2="240" class="dwg-accent-light" stroke-width="1"/>
+
+                            <!-- Cross-regional lines -->
+                            <line x1="245" y1="175" x2="555" y2="175" class="dwg-line" stroke-dasharray="3 2"/>
+                            <line x1="245" y1="275" x2="555" y2="275" class="dwg-line" stroke-dasharray="3 2"/>
+
+                            <!-- Latency stats -->
+                            <rect x="330" y="360" width="140" height="60" rx="6" fill="rgba(8,13,24,0.6)" stroke="rgba(30,58,95,0.3)" stroke-width="1"/>
+                            <text x="400" y="380" class="dwg-accent-text" text-anchor="middle" font-size="7" font-weight="600">LATENCY REDUCTION</text>
+                            <text x="400" y="395" class="dwg-text" text-anchor="middle" font-size="14" font-weight="800" fill="var(--color-accent)">-40%</text>
+                            <text x="400" y="410" class="dwg-text" text-anchor="middle" font-size="6">avg. across all regions</text>
+                        </svg>
+                    </div>
                     <span class="metric-badge" style="color: #60a5fa;">Cloud Infrastructure</span>
                     <span class="status-badge status-production">Production</span>
                     <h3>Project Beta</h3>
                     <p>Architected a multi-region Kubernetes deployment strategy that reduced latency by 40% and improved disaster recovery capabilities.</p>
-                    <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
                         <span class="tech-badge">Kubernetes</span>
                         <span class="tech-badge">Terraform</span>
                         <span class="tech-badge">AWS</span>
                     </div>
                 </div>
 
+                <!-- Project Gamma -->
                 <div class="card">
+                    <div class="project-illustration">
+                        <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="pg3" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(30,58,95,0.25)" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="800" height="450" fill="url(#pg3)"/>
+
+                            <text x="20" y="25" class="dwg-accent-text" font-size="10" font-weight="600">PROJECT GAMMA -- CI/CD Pipeline</text>
+                            <line x1="20" y1="30" x2="300" y2="30" stroke="var(--color-accent)" stroke-width="0.5" opacity="0.3"/>
+
+                            <!-- Pipeline stages as boxes -->
+                            <rect x="80" y="150" width="110" height="130" rx="10" fill="rgba(14,165,233,0.1)" stroke="var(--color-accent)" stroke-width="1.5"/>
+                            <text x="135" y="190" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">PUSH</text>
+                            <text x="135" y="210" class="dwg-text" text-anchor="middle" font-size="6">GitHub Webhook</text>
+                            <rect x="95" y="230" width="80" height="35" rx="4" fill="rgba(14,165,233,0.15)" stroke="var(--color-accent)" stroke-width="0.5"/>
+                            <text x="135" y="252" class="dwg-text" text-anchor="middle" font-size="6">Git Trigger</text>
+
+                            <!-- Arrow -->
+                            <path d="M 190 215 L 220 215" stroke="var(--color-accent-light)" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+                            <rect x="230" y="150" width="110" height="130" rx="10" fill="rgba(6,182,212,0.1)" stroke="var(--color-accent-teal)" stroke-width="1.5"/>
+                            <text x="285" y="190" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">BUILD</text>
+                            <text x="285" y="210" class="dwg-text" text-anchor="middle" font-size="6">Docker / Bazel</text>
+                            <rect x="245" y="230" width="80" height="35" rx="4" fill="rgba(6,182,212,0.15)" stroke="var(--color-accent-teal)" stroke-width="0.5"/>
+                            <text x="285" y="252" class="dwg-text" text-anchor="middle" font-size="6">Multi-stage</text>
+
+                            <!-- Arrow -->
+                            <path d="M 340 215 L 370 215" stroke="var(--color-accent-light)" stroke-width="1.5" fill="none"/>
+
+                            <rect x="380" y="150" width="110" height="130" rx="10" fill="rgba(14,165,233,0.1)" stroke="var(--color-accent)" stroke-width="1.5"/>
+                            <text x="435" y="190" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">TEST</text>
+                            <text x="435" y="210" class="dwg-text" text-anchor="middle" font-size="6">Unit / Integration</text>
+                            <rect x="395" y="230" width="80" height="35" rx="4" fill="rgba(14,165,233,0.15)" stroke="var(--color-accent)" stroke-width="0.5"/>
+                            <text x="435" y="252" class="dwg-text" text-anchor="middle" font-size="6">847 Tests</text>
+
+                            <!-- Arrow -->
+                            <path d="M 490 215 L 520 215" stroke="var(--color-accent-light)" stroke-width="1.5" fill="none"/>
+
+                            <rect x="530" y="150" width="110" height="130" rx="10" fill="rgba(6,182,212,0.1)" stroke="var(--color-accent-teal)" stroke-width="1.5"/>
+                            <text x="585" y="190" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">DEPLOY</text>
+                            <text x="585" y="210" class="dwg-text" text-anchor="middle" font-size="6">Terraform / k8s</text>
+                            <rect x="545" y="230" width="80" height="35" rx="4" fill="rgba(6,182,212,0.15)" stroke="var(--color-accent-teal)" stroke-width="0.5"/>
+                            <text x="585" y="252" class="dwg-text" text-anchor="middle" font-size="6">Blue/Green</text>
+
+                            <!-- Verification stage (larger) -->
+                            <rect x="640" y="130" width="140" height="170" rx="10" fill="rgba(14,165,233,0.12)" stroke="var(--color-accent)" stroke-width="2"/>
+                            <text x="710" y="170" class="dwg-accent-text" text-anchor="middle" font-size="9" font-weight="600">VERIFY</text>
+                            <text x="710" y="190" class="dwg-text" text-anchor="middle" font-size="6">Canary / Smoke</text>
+                            <text x="710" y="215" class="dwg-accent-text" text-anchor="middle" font-size="16" font-weight="800" fill="var(--color-success)">&#10003;</text>
+                            <text x="710" y="235" class="dwg-text" text-anchor="middle" font-size="6">All Green</text>
+
+                            <!-- Pipeline flow line -->
+                            <path d="M 190 215 L 220 215" stroke="var(--color-accent)" stroke-width="2" fill="none"/>
+                            <path d="M 255 215 L 370 215" stroke="var(--color-accent)" stroke-width="2" fill="none"/>
+                            <path d="M 405 215 L 520 215" stroke="var(--color-accent)" stroke-width="2" fill="none"/>
+
+                            <!-- Progress bar -->
+                            <rect x="80" y="310" width="700" height="8" rx="4" fill="var(--color-bg-dark)"/>
+                            <rect x="80" y="310" width="560" height="8" rx="4" fill="var(--gradient-accent)"/>
+
+                            <!-- Status labels -->
+                            <text x="80" y="340" class="dwg-text" font-size="6">100% COMPLETE</text>
+                            <text x="80" y="355" class="dwg-accent-text" text-anchor="middle" font-size="7" font-weight="600">DEPLOYED TO PRODUCTION</text>
+                            <text x="80" y="370" class="dwg-text" text-anchor="middle" font-size="6">42 deploys this month</text>
+                        </svg>
+                    </div>
                     <span class="metric-badge" style="color: #fbbf24;">Automation</span>
                     <span class="status-badge status-beta">Beta</span>
                     <h3>Project Gamma</h3>
                     <p>Developed a custom CI/CD pipeline using GitHub Actions and Terraform to automate infrastructure provisioning and testing.</p>
-                    <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
                         <span class="tech-badge">GitHub Actions</span>
                         <span class="tech-badge">Terraform</span>
                         <span class="tech-badge">Python</span>
                     </div>
                 </div>
 
+                <!-- Project Delta -->
                 <div class="card">
+                    <div class="project-illustration">
+                        <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="pg4" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(30,58,95,0.25)" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="800" height="450" fill="url(#pg4)"/>
+
+                            <text x="20" y="25" class="dwg-accent-text" font-size="10" font-weight="600">PROJECT DELTA -- Real-Time Analytics</text>
+                            <line x1="20" y1="30" x2="350" y2="30" stroke="var(--color-accent)" stroke-width="0.5" opacity="0.3"/>
+
+                            <!-- Data sources -->
+                            <rect x="40" y="100" width="140" height="80" rx="8" fill="rgba(14,165,233,0.1)" stroke="var(--color-accent)" stroke-width="1.5"/>
+                            <text x="110" y="135" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">KINESIS</text>
+                            <text x="110" y="152" class="dwg-text" text-anchor="middle" font-size="6">Stream Source</text>
+
+                            <rect x="40" y="270" width="140" height="80" rx="8" fill="rgba(6,182,212,0.1)" stroke="var(--color-accent-teal)" stroke-width="1.5"/>
+                            <text x="110" y="305" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">S3</text>
+                            <text x="110" y="322" class="dwg-text" text-anchor="middle" font-size="6">Batch Source</text>
+
+                            <!-- Flow arrows to engine -->
+                            <path d="M 180 140 Q 280 110 350 170" stroke="var(--color-accent)" stroke-width="1.5" fill="none"/>
+                            <path d="M 180 310 Q 280 340 350 280" stroke="var(--color-accent-teal)" stroke-width="1.5" fill="none"/>
+
+                            <!-- Flink engine (center) -->
+                            <rect x="350" y="140" width="200" height="170" rx="12" fill="rgba(14,165,233,0.12)" stroke="var(--color-accent)" stroke-width="2"/>
+                            <text x="450" y="175" class="dwg-accent-text" text-anchor="middle" font-size="12" font-weight="800">Apache Flink</text>
+                            <text x="450" y="195" class="dwg-text" text-anchor="middle" font-size="7">Stream Processing Engine</text>
+
+                            <!-- Internal Flink components -->
+                            <rect x="370" y="210" width="70" height="40" rx="6" fill="rgba(14,165,233,0.15)" stroke="var(--color-accent)" stroke-width="0.5"/>
+                            <text x="405" y="234" class="dwg-text" text-anchor="middle" font-size="6">Source</text>
+                            <text x="405" y="246" class="dwg-text" text-anchor="middle" font-size="6">Transform</text>
+
+                            <rect x="455" y="210" width="70" height="40" rx="6" fill="rgba(6,182,212,0.15)" stroke="var(--color-accent-teal)" stroke-width="0.5"/>
+                            <text x="490" y="234" class="dwg-text" text-anchor="middle" font-size="6">Window</text>
+                            <text x="490" y="246" class="dwg-text" text-anchor="middle" font-size="6">Agg</text>
+
+                            <rect x="370" y="260" width="155" height="35" rx="6" fill="rgba(14,165,233,0.1)" stroke="var(--color-accent)" stroke-width="0.5"/>
+                            <text x="447" y="282" class="dwg-text" text-anchor="middle" font-size="6">Changelog / State Backend</text>
+
+                            <!-- Flow arrows to outputs -->
+                            <path d="M 550 200 Q 610 170 630 150" stroke="var(--color-accent)" stroke-width="1.5" fill="none"/>
+                            <path d="M 550 260 Q 610 290 630 310" stroke="var(--color-accent-teal)" stroke-width="1.5" fill="none"/>
+
+                            <!-- Output nodes -->
+                            <rect x="640" y="80" width="140" height="100" rx="8" fill="rgba(14,165,233,0.1)" stroke="var(--color-accent)" stroke-width="1.5"/>
+                            <text x="710" y="115" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">ClickHouse</text>
+                            <text x="710" y="132" class="dwg-text" text-anchor="middle" font-size="6">Analytics DB</text>
+                            <rect x="655" y="145" width="110" height="25" rx="4" fill="rgba(14,165,233,0.15)" stroke="var(--color-accent)" stroke-width="0.5"/>
+                            <text x="710" y="162" class="dwg-text" text-anchor="middle" font-size="6">Real-time queries</text>
+
+                            <rect x="640" y="270" width="140" height="100" rx="8" fill="rgba(6,182,212,0.1)" stroke="var(--color-accent-teal)" stroke-width="1.5"/>
+                            <text x="710" y="305" class="dwg-accent-text" text-anchor="middle" font-size="8" font-weight="600">React UI</text>
+                            <text x="710" y="322" class="dwg-text" text-anchor="middle" font-size="6">Dashboard</text>
+                            <rect x="655" y="335" width="110" height="25" rx="4" fill="rgba(6,182,212,0.15)" stroke="var(--color-accent-teal)" stroke-width="0.5"/>
+                            <text x="710" y="352" class="dwg-text" text-anchor="middle" font-size="6">Live visualizations</text>
+
+                            <!-- Volume annotation -->
+                            <rect x="310" y="370" width="180" height="55" rx="6" fill="rgba(8,13,24,0.6)" stroke="rgba(30,58,95,0.3)" stroke-width="1"/>
+                            <text x="400" y="392" class="dwg-accent-text" text-anchor="middle" font-size="7" font-weight="600">DATA VOLUME</text>
+                            <text x="400" y="412" class="dwg-text" text-anchor="middle" font-size="14" font-weight="800" fill="var(--color-accent)">PB/day</text>
+                        </svg>
+                    </div>
                     <span class="metric-badge" style="color: #22d3ee;">Data Engineering</span>
                     <span class="status-badge status-beta">Beta</span>
                     <h3>Project Delta</h3>
                     <p>Built a real-time analytics dashboard processing petabytes of stream data with Apache Flink and ClickHouse.</p>
-                    <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
                         <span class="tech-badge">Apache Flink</span>
                         <span class="tech-badge">ClickHouse</span>
                         <span class="tech-badge">React</span>

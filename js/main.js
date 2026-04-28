@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize all features
   initMobileMenu();
   initScrollAnimations();
-  initIntersectionObserver();
+  initSkillBars();
+  initContactForm();
 });
 
 // Mobile Menu Toggle
@@ -13,16 +13,9 @@ function initMobileMenu() {
   if (!hamburger || !navLinks) return;
 
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
+    const isActive = hamburger.classList.toggle('active');
     navLinks.classList.toggle('active');
-
-    // Add ESC key listener to close menu
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-      }
-    });
+    hamburger.setAttribute('aria-expanded', isActive);
   });
 
   // Close menu when clicking a link
@@ -30,7 +23,17 @@ function initMobileMenu() {
     link.addEventListener('click', () => {
       hamburger.classList.remove('active');
       navLinks.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
     });
+  });
+
+  // ESC key closes menu (single listener)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && hamburger.classList.contains('active')) {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
   });
 }
 
@@ -40,96 +43,87 @@ function initScrollAnimations() {
 
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -80px 0px'
+    rootMargin: '0px 0px -60px 0px'
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // Stagger animation delay for multiple cards
-        const delay = index * 100;
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, delay);
+        entry.target.classList.add('visible');
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  cards.forEach((card, index) => {
-    // Only observe cards that don't already have the visible class
+  cards.forEach(card => {
     if (!card.classList.contains('visible')) {
       observer.observe(card);
     } else {
-      // Card was pre-visible (e.g., hero section), show immediately
-      setTimeout(() => {
-        card.classList.add('visible');
-      }, index * 50);
+      card.classList.add('visible');
     }
   });
 }
 
-// Initialize Intersection Observer for new elements
-function initIntersectionObserver() {
-  // This will be used for future dynamic content
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
+// Skill Bar Animation
+function initSkillBars() {
+  const fills = document.querySelectorAll('.skill-bar-fill');
+
+  if (fills.length === 0) return;
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.classList.contains('observed')) {
-        entry.target.classList.add('observed');
-        // Add any additional animation logic here
+      if (entry.isIntersecting) {
+        const width = entry.target.getAttribute('data-width');
+        entry.target.style.width = width + '%';
+        observer.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { threshold: 0.3 });
 
-  // Observer is ready for dynamic content
-  return observer;
+  fills.forEach(fill => observer.observe(fill));
 }
 
-// Utility: Debounce function for performance
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
+// Contact Form Handler
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
 
-// Utility: Smooth scroll to element
-function smoothScrollTo(element) {
-  const elementPosition = element.getBoundingClientRect().top;
-  const offsetPosition = elementPosition + window.pageYOffset - 80;
+  const successMsg = document.getElementById('formSuccess');
 
-  window.scrollTo({
-    top: offsetPosition,
-    behavior: 'smooth'
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const subject = form.subject.value;
+    const message = form.message.value.trim();
+
+    // Validation
+    if (!name || !email || !subject || !message) {
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return;
+    }
+
+    // Build mailto link
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`
+    );
+    const subjectLine = encodeURIComponent(`Portfolio Contact: ${subject}`);
+
+    window.location.href = `mailto:hello@russellfranklin.github.io?subject=${subjectLine}&body=${body}`;
+
+    // Show success message
+    if (successMsg) {
+      successMsg.classList.add('show');
+      form.reset();
+
+      setTimeout(() => {
+        successMsg.classList.remove('show');
+      }, 5000);
+    }
   });
 }
-
-// Add keyboard navigation for better accessibility
-document.addEventListener('keydown', (e) => {
-  // Arrow keys for card navigation
-  if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-    const cards = document.querySelectorAll('.card');
-    const currentCard = document.activeElement;
-    const currentIndex = Array.from(cards).indexOf(currentCard);
-
-    if (currentIndex !== -1) {
-      e.preventDefault();
-      const nextIndex = e.key === 'ArrowRight'
-        ? (currentIndex + 1) % cards.length
-        : (currentIndex - 1 + cards.length) % cards.length;
-
-      cards[nextIndex]?.focus();
-      smoothScrollTo(cards[nextIndex]);
-    }
-  }
-});
