@@ -1066,7 +1066,7 @@ body:not(.page-home) .hero::before {
   grid-template-columns: 1fr 1fr;
   gap: var(--grid-gap-lg);
   margin-bottom: var(--spacing-xl);
-  align-items: end; /* Align to bottom - cards will sit lower to match form height */
+  align-items: start; /* Align from top */
 }
 
 /* Contact Cards */
@@ -1084,15 +1084,15 @@ body:not(.page-home) .hero::before {
 .contact-form {
   max-width: 100%;
   padding: 0;
-  padding-top: 120px; /* Lowered to match expanded panel height */
+  padding-top: 0; /* Reset padding since panels are now wider */
 }
 
-/* Contact cards - increased height significantly to prevent text wrap */
+/* Contact cards - increased width to prevent text wrap */
 .contact-card-email,
 .contact-card-linkedin,
 .contact-card-phone,
 .contact-card-resume {
-  min-height: 360px; /* Increased significantly to prevent 2-line wrap */
+  min-width: 280px; /* Wider panels to prevent text wrap */
   display: flex;
   flex-direction: column;
   align-items: center; /* Center text horizontally */
@@ -1110,8 +1110,8 @@ body:not(.page-home) .hero::before {
 .contact-card-linkedin,
 .contact-card-phone,
 .contact-card-resume {
-  flex: 1 1 220px; /* Allow flexibility while maintaining min-height */
-  min-width: 220px;
+  flex: 1 1 280px; /* Allow flexibility while maintaining min-width */
+  height: 100%;
 }
 
 .contact-card-email:hover,
