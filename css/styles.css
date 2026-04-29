@@ -835,8 +835,8 @@ body:not(.page-home) .hero::before {
   color: var(--color-text-main);
 }
 
-/* Gallery page h1 in section-title should be same size as other h1 titles (1.5rem) */
-.page-gallery .section-title h1 {
+/* Gallery page h2 in section-title - matches other page section titles */
+.page-gallery .section-title h2 {
   font-size: 1.5rem;
   line-height: 1.4;
   color: var(--color-text-main);
