@@ -985,33 +985,6 @@ body:not(.page-home) .hero::before {
   margin-bottom: 0.25rem;
 }
 
-/* Only the button text is clickable */
-.contact-card .btn-text {
-  font-weight: 600;
-  color: var(--color-accent);
-  margin-top: auto;
-  text-decoration: none;
-  transition: all var(--transition-fast);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.contact-card .btn-text:hover {
-  color: var(--color-accent-light);
-  text-decoration: underline;
-}
-
-.contact-card .btn-text::after {
-  content: ' →';
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-}
-
-.contact-card .btn-text:hover::after {
-  opacity: 1;
-}
-
 /* Contact form - full width container */
 .contact-form {
   width: 100%;
