@@ -18,6 +18,11 @@
             padding: 8rem 0 6rem 0;
             text-align: center;
         }
+        .gallery-hero p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--color-text-muted);
+        }
         .gallery-nav {
             display: flex;
             justify-content: center;
@@ -64,8 +69,8 @@
             display: none;
         }
         .gallery-panel {
-            flex: 0 0 500px;
-            height: 375px;
+            flex: 0 0 340px;
+            height: 270px;
             scroll-snap-align: center;
             position: relative;
             overflow: hidden;
@@ -73,7 +78,7 @@
             background: var(--color-surface);
             border: 1px solid rgba(30, 58, 95, 0.3);
             transition: all var(--transition-smooth);
-            min-width: 500px;
+            min-width: 340px;
         }
         .gallery-panel:hover {
             transform: translateY(-4px);
@@ -118,7 +123,7 @@
             z-index: 1;
         }
         .gallery-caption h4 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 0.25rem;
             color: var(--color-accent-light);
         }
@@ -176,9 +181,7 @@
         <section class="gallery-hero">
             <div class="container">
                 <h1>Visual Gallery</h1>
-                <p style="max-width: 600px; margin: 0 auto; color: var(--color-text-muted);">
-                    Engineering documentation, CAD designs, prototypes, and personal moments captured through the lens.
-                </p>
+                <p>Engineering documentation, CAD designs, prototypes, and personal moments captured through the lens.</p>
             </div>
         </section>
 

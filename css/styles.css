@@ -556,11 +556,49 @@ section {
   font-size: 0.75rem;
   font-weight: 500;
   padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-md); /* Changed from radius-full to rectangular */
+  border-radius: var(--radius-md);
   border: 1px solid rgba(14, 165, 233, 0.12);
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
   white-space: nowrap;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.skills-panel {
+  overflow: hidden;
+}
+
+.skills-panel .skills-category {
+  margin-bottom: 1.25rem;
+}
+
+.skills-panel .skills-category:last-child {
+  margin-bottom: 0;
+}
+
+.skills-panel .skills-category h4 {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  letter-spacing: 0.05em;
+}
+
+.skills-panel .skills-category div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-panel .skills-category div span {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .skills-panel {
+    overflow-x: visible;
+  }
 }
 
 /* Status Badge */
@@ -1202,6 +1240,20 @@ footer p {
 /* Utility Classes */
 .text-center {
   text-align: center;
+}
+
+/* Gallery panels - 3 per row max on larger screens (1200px+) */
+@media (min-width: 1200px) {
+  .gallery-panel {
+    flex: 0 0 340px;
+    height: 270px;
+    min-width: 340px;
+  }
+}
+
+/* Skills panel specific overrides */
+.skills-panel .skills-category div {
+  width: 100%;
 }
 
 /* Skills List Styles */
