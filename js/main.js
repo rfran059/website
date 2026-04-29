@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initSkillBars();
   initContactForm();
+  initScrollFadeIn();
+  initParallaxHero();
 });
 
 // Mobile Menu Toggle
@@ -81,6 +83,47 @@ function initSkillBars() {
   }, { threshold: 0.3 });
 
   fills.forEach(fill => observer.observe(fill));
+}
+
+// Scroll Fade-in Animation
+function initScrollFadeIn() {
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('section').forEach(section => {
+    if (!section.classList.contains('hero')) {
+      section.classList.add('fade-in-section');
+      observer.observe(section);
+    }
+  });
+}
+
+// Parallax Hero Effect
+function initParallaxHero() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  hero.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    hero.style.transform = `translate(${x}px, ${y}px)`;
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    hero.style.transform = 'translate(0, 0)';
+  });
 }
 
 // Contact Form Handler

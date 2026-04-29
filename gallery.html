@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View Russell Franklin's engineering and personal gallery featuring mechanical engineering themes and workspace shots.">
+    <title>Portfolio | Gallery</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9881;</text></svg>">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .gallery-page {
+            padding: 0;
+        }
+        .gallery-hero {
+            padding: 8rem 0 4rem 0;
+            text-align: center;
+        }
+        .gallery-container {
+            display: flex;
+            overflow-x: auto;
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg);
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .gallery-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .gallery-container::-webkit-scrollbar-track {
+            background: var(--color-bg);
+            border-radius: 4px;
+        }
+        .gallery-container::-webkit-scrollbar-thumb {
+            background: var(--color-border-light);
+            border-radius: 4px;
+        }
+        .gallery-container::-webkit-scrollbar-thumb:hover {
+            background: var(--color-accent);
+        }
+        .gallery-panel {
+            flex: 0 0 500px;
+            height: 375px;
+            scroll-snap-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+            background: var(--color-surface);
+            border: 1px solid rgba(30, 58, 95, 0.3);
+            transition: all var(--transition-smooth);
+        }
+        .gallery-panel:hover {
+            transform: translateY(-4px);
+            border-color: rgba(14, 165, 233, 0.4);
+            box-shadow: var(--shadow-card-hover);
+        }
+        .gallery-panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        .gallery-panel:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(10, 15, 26, 0.9) 0%, rgba(10, 15, 26, 0.6) 50%, transparent 100%);
+            pointer-events: none;
+        }
+        .gallery-panel::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent 0%, var(--color-bg) 100%);
+            pointer-events: none;
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: var(--spacing-md);
+            left: var(--spacing-md);
+            right: var(--spacing-md);
+            color: white;
+            z-index: 1;
+        }
+        .gallery-caption h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--color-accent-light);
+        }
+        .gallery-caption p {
+            font-size: 0.85rem;
+            color: rgba(241, 245, 249, 0.8);
+            margin: 0;
+        }
+        .scroll-hint {
+            text-align: center;
+            padding: var(--spacing-lg);
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+        .scroll-hint::before {
+            content: '💡 ';
+        }
+    </style>
+</head>
+<body>
+    <main class="gallery-page">
+        <section class="gallery-hero">
+            <div class="container">
+                <h1>Engineering & Workspace</h1>
+                <p style="max-width: 600px; margin: 0 auto; color: var(--color-text-muted);">
+                    A collection of moments from the design and prototyping process -- from CAD screens to 3D printers to workshop benches.
+                </p>
+            </div>
+        </section>
+
+        <div class="gallery-container">
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);">
+                <div class="gallery-caption">
+                    <h4>CAD Design Interface</h4>
+                    <p>SolidWorks environment for aerodynamic component modeling</p>
+                </div>
+            </div>
+
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);">
+                <div class="gallery-caption">
+                    <h4>CFD Simulation</h4>
+                    <p>Flow visualization showing pressure distribution analysis</p>
+                </div>
+            </div>
+
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #0f1a2e 0%, #111d2f 100%);">
+                <div class="gallery-caption">
+                    <h4>Workshop Workspace</h4>
+                    <p>Organized bench for mechanical assembly and prototyping</p>
+                </div>
+            </div>
+
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);">
+                <div class="gallery-caption">
+                    <h4>3D Printer</h4>
+                    <p>FDM printer bringing CAD designs to physical form</p>
+                </div>
+            </div>
+
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);">
+                <div class="gallery-caption">
+                    <h4>Mechanical Components</h4>
+                    <p>Precision-machined parts for aerospace applications</p>
+                </div>
+            </div>
+
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);">
+                <div class="gallery-caption">
+                    <h4>Engineering Tools</h4>
+                    <p>Professional-grade instruments for measurement and analysis</p>
+                </div>
+            </div>
+
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);">
+                <div class="gallery-caption">
+                    <h4>Prototyping Setup</h4>
+                    <p>Quick-assembly jig for iterative design testing</p>
+                </div>
+            </div>
+
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);">
+                <div class="gallery-caption">
+                    <h4>Testing Equipment</h4>
+                    <p>Data acquisition system for performance validation</p>
+                </div>
+            </div>
+
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #ec4899 0%, #0ea5e9 100%);">
+                <div class="gallery-caption">
+                    <h4>Blueprint Sketches</h4>
+                    <p>Hand-drawn design iterations before digital modeling</p>
+                </div>
+            </div>
+
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
+                <div class="gallery-caption">
+                    <h4>Formula SAE</h4>
+                    <p>Aerodynamics team collaborating on design integration</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-hint">
+            Swipe or scroll to explore more
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>2026 Russell Franklin | B.S. Mechanical Engineering @ UCR</p>
+            <p style="color: var(--color-text-muted); margin: 0.5rem 0;">rfran059@ucr.edu</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
