@@ -41,7 +41,9 @@ function initMobileMenu() {
 function initScrollAnimations() {
   const cards = document.querySelectorAll('.card');
   const galleryPanels = document.querySelectorAll('.gallery-panel');
+  const gallerySection = document.querySelector('.gallery-section');
   const allElements = Array.from(cards).concat(galleryPanels);
+  if (gallerySection) allElements.push(gallerySection);
 
   const observerOptions = {
     threshold: 0.1,

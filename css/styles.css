@@ -1107,14 +1107,14 @@ footer p {
 .section-title {
   text-align: center;
   margin-bottom: var(--spacing-xl);
-  margin-top: var(--spacing-xl);
+  margin-top: 0;
 }
 
 .section-title h2 {
   position: relative;
   display: inline-block;
   padding-bottom: 0.75rem;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0;
 }
 
 .section-title h2::after {
@@ -1129,10 +1129,19 @@ footer p {
   border-radius: 2px;
 }
 
-/* Consistent spacing after section titles on all pages */
-.section-title + p,
-.section-title + .text-center {
+/* Consistent spacing after section titles */
+.section-title h2 {
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Subtext spacing - applies to all pages */
+.section-title ~ p {
   margin-top: var(--spacing-lg);
+}
+
+/* Gallery subtext is inside gallery-hero, use different selector */
+.page-gallery .gallery-hero .container p {
+  margin-top: 0;
 }
 
 /* Stats Row */
@@ -1332,21 +1341,6 @@ footer p {
 
   .footer-links {
     gap: var(--spacing-md);
-  }
-
-  /* Mobile: section-title spacing */
-  .section-title {
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
-  }
-
-  .section-title h2 {
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .section-title + p,
-  .section-title + .text-center {
-    margin-top: var(--spacing-md);
   }
 }
 
