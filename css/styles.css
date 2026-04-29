@@ -447,9 +447,20 @@ body:not(.page-home) .hero::before {
   gap: var(--grid-gap);
 }
 
-/* Main text panel spans full width on desktop */
-.card.main-text-panel {
-  grid-column: span 2;
+/* Desktop: full-width panels span 2 columns */
+@media (min-width: 768px) {
+  .card.grid-span-2,
+  .card.main-text-panel {
+    grid-column: span 2;
+  }
+}
+
+/* Mobile: single column layout */
+@media (max-width: 767px) {
+  .card.grid-span-2,
+  .card.main-text-panel {
+    grid-column: span 1;
+  }
 }
 
 /* Main text panel content styling */

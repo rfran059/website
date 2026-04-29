@@ -36,7 +36,7 @@
                 <h2>About Me</h2>
             </div>
             <div class="bento-grid about-layout">
-                <!-- Row 1: Overview (full width, spans 2 columns) -->
+                <!-- Row 1: Overview (full width) + Skills (half width) -->
                 <div class="card grid-span-2">
                     <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem; line-height: 1.4; color: var(--color-text-main);">Mechanical Engineering Student</h2>
                     <div class="about-description">
@@ -47,15 +47,14 @@
                             My approach blends computational tools (ANSYS, SolidWorks) with hands-on prototyping (3D printing, CNC machining) to create systems that perform. I believe great engineering bridges the gap between digital design and physical reality.
                         </p>
                         <p style="margin-bottom: var(--spacing-md);">
-                            <strong>Focus Areas:</strong> Aerodynamic design, CAD/CAE simulation, rapid prototyping, and experimental testing. I work at the intersection of theory and practice, using computational fluid dynamics to validate physical designs.
+                            <strong>Focus Areas:</strong> Aerodynamic design, CAD/CAE simulation, rapid prototyping, and experimental testing. I work at the intersection of theory and practice, using computational fluid dynamics to validate physical designs before they ever touch a manufacturing tool.
                         </p>
                         <p>
-                            <strong>Design Philosophy:</strong> Every CAD model is validated. From GD&T tolerances to CFD convergence criteria -- details define performance. Precision, innovation, and performance drive every project.
+                            <strong>Design Philosophy:</strong> Every CAD model is validated. From GD&T tolerances to CFD convergence criteria -- details define performance. Precision, innovation, and performance drive every project I undertake.
                         </p>
                     </div>
                 </div>
 
-                <!-- Row 2: Skills + Career Journey (2 columns) -->
                 <div class="card skills-panel">
                     <span class="metric-badge">Technical Skills</span>
                     <h3>Skills</h3>
@@ -95,6 +94,7 @@
                     </div>
                 </div>
 
+                <!-- Row 2: Career Journey (half width) + Beyond Engineering (full width) -->
                 <div class="card">
                     <span class="metric-badge">Education & Experience</span>
                     <h3>Career Journey</h3>
@@ -113,6 +113,18 @@
                             <p style="color: var(--color-text-subtle); font-size: 0.75rem; margin: 0.5rem 0 0 0;">Relevant Coursework: CAD/CAE, Fluid Mechanics, Thermodynamics, Manufacturing Processes, Experimental Testing</p>
                         </div>
                         <div class="timeline-item">
+                            <div class="timeline-icon" style="position: absolute; left: 4px; top: 2px; width: 24px; height: 24px; background: rgba(14, 165, 233, 0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
+                            <div class="timeline-title">America's Tire</div>
+                            <div class="timeline-description">Technician Lead, Santa Rosa, CA</div>
+                            <div class="timeline-date">Aug 2020 -- Mar 2024</div>
+                            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin: 0.5rem 0 0 0;">Led maintenance and repair operations for commercial vehicle fleet. Managed inventory systems and trained junior technicians on diagnostic procedures.</p>
+                        </div>
+                        <div class="timeline-item">
                             <div class="timeline-icon" style="position: absolute; left: 4px; top: 2px; width: 24px; height: 24px; background: rgba(6, 182, 212, 0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
@@ -122,13 +134,12 @@
                             <div class="timeline-title">Santa Rosa Junior College</div>
                             <div class="timeline-description">Mechanical Engineering Transfer (AA)</div>
                             <div class="timeline-date">Aug 2020 -- Jun 2023</div>
-                            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin: 0.5rem 0 0 0;">GPA: 3.4 | Coursework: Statics, Dynamics, Thermodynamics</p>
+                            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin: 0.5rem 0 0 0;">GPA: 3.4 | Coursework: Statics, Dynamics, Thermodynamics, Mechanics of Materials, Fluid Mechanics</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Row 3: Beyond Engineering (spans 2 columns) -->
-                <div class="card">
+                <div class="card grid-span-2">
                     <span class="metric-badge">Interests</span>
                     <h3>Beyond Engineering</h3>
                     <div class="about-interests">
@@ -138,7 +149,7 @@
                         </div>
                         <div style="margin-bottom: var(--spacing-md);">
                             <strong style="color: var(--color-text-main); display: block; margin-bottom: 0.25rem;">🎵 HiFi Audio</strong>
-                            <p style="font-size: 0.9rem; margin-bottom: 0;">Custom 3D-printed speaker enclosures with VituixCAD crossover design. Total harmonic distortion &lt; 0.1%.</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 0;">Custom 3D-printed speaker enclosures with VituixCAD crossover design. Total harmonic distortion < 0.1%.</p>
                         </div>
                         <div>
                             <strong style="color: var(--color-text-main); display: block; margin-bottom: 0.25rem;">🛠️ Making</strong>
