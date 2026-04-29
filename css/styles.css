@@ -937,9 +937,9 @@ section {
   }
 }
 
-/* Home page - extend gradient background to sections below hero */
+/* Home page - extend background color gradient to sections below hero */
 .page-home .section-title {
-  background: linear-gradient(to bottom, rgba(10, 15, 26, 0.6) 0%, rgba(14, 165, 233, 0.02) 50%, rgba(10, 15, 26, 0.6) 100%);
+  background: linear-gradient(to bottom, rgba(8, 13, 24, 0.8) 0%, rgba(10, 15, 26, 0.4) 50%, rgba(8, 13, 24, 0.8) 100%);
   padding: 3rem 2rem;
   border-radius: var(--radius-lg);
   margin-bottom: var(--spacing-xl);
@@ -1367,9 +1367,9 @@ footer p {
 /* Gallery panels - 3 per row max on larger screens (1200px+) */
 @media (min-width: 1200px) {
   .gallery-panel {
-    flex: 0 0 400px;
-    height: 320px;
-    min-width: 400px;
+    flex: 0 0 800px;
+    height: 640px;
+    min-width: 800px;
   }
 }
 
