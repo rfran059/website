@@ -1125,11 +1125,13 @@ footer p {
 /* Subtext spacing - applies to all pages (elements after section-title) */
 .section-title ~ p {
   margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
 }
 
-/* Gallery hero subtext - no extra margin since it's wrapped in container */
+/* Gallery hero subtext - no extra margin (uses different spacing) */
 .page-gallery .gallery-hero .container p {
   margin-top: 0;
+  margin-bottom: var(--spacing-md);
 }
 
 /* Stats Row */
