@@ -957,25 +957,31 @@ body:not(.page-home) .hero::before {
   margin-bottom: var(--spacing-sm);
 }
 
-/* Contact Section Layout - vertical stack of cards */
+/* Contact Section Layout - cards on left, form on right */
 .contact-section-layout {
-  display: flex;
-  flex-direction: column;
-  gap: var(--grid-gap);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--grid-gap-lg);
   margin-bottom: var(--spacing-xl);
 }
 
-/* Flat rectangular contact cards */
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
+}
+
+/* Flat rectangular contact cards - same width, stacked vertically */
 .contact-card {
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: var(--spacing-md);
   background: var(--color-surface);
   border: 1px solid rgba(30, 58, 95, 0.3);
   border-radius: var(--radius-lg);
   text-decoration: none;
   transition: all var(--transition-smooth);
-  min-height: 200px;
+  min-height: 180px;
   text-align: center;
 }
 
@@ -1030,12 +1036,20 @@ body:not(.page-home) .hero::before {
 
 @media (max-width: 768px) {
   .contact-section-layout {
-    gap: var(--spacing-sm);
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .contact-cards {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .contact-card {
-    min-height: 160px;
-    padding: var(--spacing-md);
+    flex: 1;
+    min-width: 200px;
+    min-height: 120px;
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 
   .contact-card .btn-text {
