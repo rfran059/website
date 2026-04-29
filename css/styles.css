@@ -1077,7 +1077,7 @@ body:not(.page-home) .hero::before {
 
 /* Two-column bento grid layout for contact cards - wider columns */
 .contact-cards.bento {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
 }
 
 /* Contact cards - increased width to prevent text wrap */
