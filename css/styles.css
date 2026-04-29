@@ -441,26 +441,11 @@ body:not(.page-home) .hero::before {
   margin: var(--spacing-xl) 0;
 }
 
-/* Two-column bento layout for about page (staggered like projects) */
+/* About page - two rows with staggered layout */
 .bento-grid.about-layout {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--grid-gap);
-}
-
-/* Desktop: full-width panels span 2 columns */
-@media (min-width: 768px) {
-  .card.grid-span-2,
-  .card.main-text-panel {
-    grid-column: span 2;
-  }
-}
-
-/* Mobile: single column layout */
-@media (max-width: 767px) {
-  .card.grid-span-2,
-  .card.main-text-panel {
-    grid-column: span 1;
-  }
 }
 
 /* Main text panel content styling */
@@ -493,13 +478,10 @@ body:not(.page-home) .hero::before {
   font-weight: 600;
 }
 
-@media (max-width: 900px) {
+/* Mobile: Stack bento grid cards vertically */
+@media (max-width: 768px) {
   .bento-grid.about-layout {
     grid-template-columns: 1fr;
-  }
-
-  .card.main-text-panel {
-    grid-column: span 1;
   }
 }
 
@@ -735,18 +717,7 @@ body:not(.page-home) .hero::before {
   color: var(--color-text-muted);
 }
 
-/* About page bento grid - default single column fallback */
-.bento-grid.about-layout {
-  display: grid;
-  gap: var(--grid-gap);
-}
-
-/* Use grid-span classes for about layout (same as projects) */
-@media (min-width: 768px) {
-  .card.main-text-panel {
-    grid-column: span 2;
-  }
-}
+/* Skills panel */
 
 /* Skills panel */
 .skills-panel {
@@ -811,17 +782,6 @@ body:not(.page-home) .hero::before {
   color: var(--color-text-muted);
 }
 
-/* Responsive: stack cards on mobile */
-@media (max-width: 900px) {
-  .bento-grid.about-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .card.main-text-panel {
-    grid-column: span 1;
-  }
-}
-
 /* Standard paragraph styles for all pages except home */
 .page-about .card p,
 .page-projects .card p,
@@ -858,34 +818,6 @@ body:not(.page-home) .hero::before {
   line-height: 1.7;
 }
 
-/* Skills panel - use rectangular bubbles instead of circular */
-.tech-badge {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(14, 165, 233, 0.08);
-  color: var(--color-accent-light);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-md); /* Changed from radius-full to rectangular */
-  border: 1px solid rgba(14, 165, 233, 0.12);
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  white-space: nowrap;
-}
-
-/* About page - two-column bento layout */
-.bento-grid.about-layout {
-  grid-template-columns: 1fr 1fr;
-  gap: var(--grid-gap);
-}
-
-/* Ensure main text panel spans full width on about page */
-.card.main-text-panel {
-  grid-column: span 2;
-}
-
 /* Main text panel content styling */
 .about-description {
   padding: var(--spacing-md) 0;
@@ -914,16 +846,6 @@ body:not(.page-home) .hero::before {
 .about-description strong {
   color: var(--color-text-main);
   font-weight: 600;
-}
-
-@media (max-width: 900px) {
-  .bento-grid.about-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .card.main-text-panel {
-    grid-column: span 1;
-  }
 }
 
 /* Gallery - ensure horizontal scroll is always enforced */
