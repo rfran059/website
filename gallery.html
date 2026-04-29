@@ -65,46 +65,10 @@
             scrollbar-width: none;
             flex-wrap: nowrap;
         }
-        /* Gallery title - match about/projects/contact h1 size with underline */
-        .section-title h1 {
-            font-size: 1.5rem;
-            line-height: 1.4;
-            color: var(--color-text-main);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.75rem;
-        }
-        .section-title h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--gradient-accent);
-            border-radius: 2px;
-        }
-        /* Gallery hero text styling */
-        .gallery-hero p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: var(--color-text-muted);
-        }
-        /* Gallery panel hover effect */
-        .gallery-panel:hover {
-            transform: translateY(-4px);
-            border-color: rgba(14, 165, 233, 0.4);
-            box-shadow: 0 12px 40px rgba(14, 165, 233, 0.12);
-        }
-        .gallery-panel:hover img {
-            transform: scale(1.05);
-        }
-            flex-wrap: nowrap;
-        }
         .gallery-container::-webkit-scrollbar {
             display: none;
         }
+        /* Gallery panel styles */
         .gallery-panel {
             flex: 0 0 800px;
             height: 640px;
@@ -116,11 +80,12 @@
             border: 1px solid rgba(30, 58, 95, 0.3);
             transition: all var(--transition-smooth);
             min-width: 800px;
+            cursor: pointer;
         }
         .gallery-panel:hover {
             transform: translateY(-4px);
             border-color: rgba(14, 165, 233, 0.4);
-            box-shadow: var(--shadow-card-hover);
+            box-shadow: 0 12px 40px rgba(14, 165, 233, 0.12);
         }
         .gallery-panel img {
             width: 100%;
@@ -131,6 +96,7 @@
         .gallery-panel:hover img {
             transform: scale(1.05);
         }
+        /* Gradient overlay on panel */
         .gallery-panel::before {
             content: '';
             position: absolute;
@@ -138,19 +104,25 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to top, rgba(10, 15, 26, 0.9) 0%, rgba(10, 15, 26, 0.6) 50%, transparent 100%);
+            background: linear-gradient(to top, rgba(10, 15, 26, 0.95) 0%, rgba(10, 15, 26, 0.7) 50%, transparent 100%);
             pointer-events: none;
         }
+        /* Gradient overlay on click */
+        .gallery-panel.active-panel::before {
+            background: linear-gradient(to top, rgba(10, 15, 26, 0.98) 0%, transparent 100%);
+        }
+        /* Gradient overlay for caption background */
         .gallery-panel::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent 0%, var(--color-bg) 100%);
+            height: 80px;
+            background: linear-gradient(to bottom, transparent 0%, rgba(10, 15, 26, 0.98) 100%);
             pointer-events: none;
         }
+        /* Gallery caption */
         .gallery-caption {
             position: absolute;
             bottom: var(--spacing-md);
@@ -160,15 +132,21 @@
             z-index: 1;
         }
         .gallery-caption h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
             color: var(--color-accent-light);
+            font-weight: 600;
         }
         .gallery-caption p {
-            font-size: 0.85rem;
-            color: rgba(241, 245, 249, 0.8);
+            font-size: 1.05rem;
+            color: rgba(241, 245, 249, 0.9);
             margin: 0;
+            line-height: 1.7;
         }
+        .gallery-panel .gallery-panel-short p {
+            display: none;
+        }
+        /* Scroll hint */
         .scroll-hint {
             text-align: center;
             padding: var(--spacing-lg);
@@ -179,19 +157,135 @@
         .scroll-hint::before {
             content: '💡 ';
         }
-        .gallery-info {
-            padding: var(--spacing-lg);
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-xl);
-            color: var(--color-text-subtle);
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 13, 24, 0.98);
+            z-index: 1000;
+            overflow-y: auto;
         }
-        .gallery-info-item {
+        .lightbox-modal.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .lightbox-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+        }
+        .lightbox-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        .lightbox-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-text-main);
+            margin: 0;
+        }
+        .lightbox-close {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-full);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-main);
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+        .lightbox-close:hover {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: scale(1.05);
+        }
+        .lightbox-close svg {
+            width: 24px;
+            height: 24px;
+        }
+        .lightbox-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+        .lightbox-image {
+            width: 100%;
+            height: 700px;
+            background: var(--color-surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(30, 58, 95, 0.3);
+            overflow: hidden;
+        }
+        .lightbox-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        .lightbox-image:hover img {
+            transform: scale(1.02);
+        }
+        .lightbox-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        .lightbox-details h3 {
+            font-size: 1.5rem;
+            color: var(--color-text-main);
+            margin: 0 0 var(--spacing-sm) 0;
+        }
+        .lightbox-details p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+        .lightbox-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+        .lightbox-tag {
+            background: rgba(14, 165, 233, 0.15);
+            color: var(--color-accent-light);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(14, 165, 233, 0.25);
+        }
+        .lightbox-short {
+            grid-column: span 2;
+            padding: var(--spacing-xl);
+            background: rgba(17, 29, 63, 0.5);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(30, 58, 95, 0.3);
+        }
+        @media (max-width: 1024px) {
+            .lightbox-main {
+                grid-template-columns: 1fr;
+            }
+            .lightbox-image {
+                height: 500px;
+            }
+            .lightbox-short {
+                grid-column: span 1;
+            }
         }
     </style>
 </head>
@@ -224,7 +318,7 @@
             </div>
         </section>
 
-        <div class="gallery-nav" style="display: flex; justify-content: center; gap: var(--spacing-md); padding: var(--spacing-md) 0;">
+        <div class="gallery-nav">
             <button class="nav-button" id="prevBtn" aria-label="Scroll left">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
@@ -238,84 +332,96 @@
         </div>
 
         <div class="gallery-container" id="galleryContainer">
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);">
+            <!-- Panel 1: Formula SAE Front Wing -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);" data-short-description="Multielement aerodynamic package design for race car - CFD-validated front wing with precise geometry optimization for maximum downforce-to-drag ratio.">
                 <div class="gallery-caption">
                     <h4>Formula SAE Front Wing</h4>
                     <p>Multielement aerodynamic package design for race car</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);">
+            <!-- Panel 2: CFD Analysis -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);" data-short-description="ANSYS Fluent validation showing pressure distribution across aerodynamic surface - CFD convergence achieved with residual drop below 1e-6 and monitoring of lift/drag coefficients throughout simulation.">
                 <div class="gallery-caption">
                     <h4>CFD Analysis</h4>
                     <p>ANSYS Fluent validation showing pressure distribution</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #0f1a2e 0%, #111d2f 100%);">
+            <!-- Panel 3: 3D Printed Enclosure -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #0f1a2e 0%, #111d2f 100%);" data-short-description="HiFi speaker bass reflex with 19 interlocking parts - Precision 3D-printed enclosure optimized for port tuning using VituixCAD. Features parametric design with interlocking mechanism for easy assembly.">
                 <div class="gallery-caption">
                     <h4>3D Printed Enclosure</h4>
                     <p>HiFi speaker bass reflex with 19 interlocking parts</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);">
+            <!-- Panel 4: Airfoil Testing Rig -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);" data-short-description="Experimental validation apparatus for wind tunnel testing - Custom-built rig with force balance, laser displacement sensors, and high-speed camera for comprehensive aerodynamic data collection.">
                 <div class="gallery-caption">
                     <h4>Airfoil Testing Rig</h4>
                     <p>Experimental validation apparatus for wind tunnel testing</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);">
+            <!-- Panel 5: Smart Pill Bottle -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);" data-short-description="Arduino-based medication tracking prototype - Smart dispensing system with real-time monitoring, GPS tracking, and mobile app integration for medication adherence management.">
                 <div class="gallery-caption">
                     <h4>Smart Pill Bottle</h4>
                     <p>Arduino-based medication tracking prototype</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);">
+            <!-- Panel 6: CNC Machining -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);" data-short-description="Precision aluminum bracket fabrication - CNC-machined bracket with tight tolerances (±0.005"), heat-treated 6061-T6 aluminum, and custom mounting interfaces for industrial applications.">
                 <div class="gallery-caption">
                     <h4>CNC Machining</h4>
                     <p>Precision aluminum bracket fabrication</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);">
+            <!-- Panel 7: Engineering Workshop -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);" data-short-description="Workspace setup for mechanical design and testing - Fully equipped workshop with CAD stations, 3D printers, CNC machines, and testing equipment for rapid prototyping and validation.">
                 <div class="gallery-caption">
                     <h4>Engineering Workshop</h4>
                     <p>Workspace setup for mechanical design and testing</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);">
+            <!-- Panel 8: Technical Documentation -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);" data-short-description="CAD drawings and assembly documentation - Comprehensive technical package including 2D assembly drawings, BOMs, GD&T specifications, and manufacturing instructions for reproducible builds.">
                 <div class="gallery-caption">
                     <h4>Technical Documentation</h4>
                     <p>CAD drawings and assembly documentation</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);">
+            <!-- Panel 9: Prototype Iteration -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);" data-short-description="Rapid prototyping and design refinement process - Iterative design workflow showing concept sketches, 3D models, physical prototypes, and test results for continuous improvement.">
                 <div class="gallery-caption">
                     <h4>Prototype Iteration</h4>
                     <p>Rapid prototyping and design refinement process</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%);">
+            <!-- Panel 10: Wind Tunnel Testing -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%);" data-short-description="Aerodynamic data collection and validation - Wind tunnel testing with force balance measurements, pressure tap readings, and flow visualization for comprehensive performance analysis.">
                 <div class="gallery-caption">
                     <h4>Wind Tunnel Testing</h4>
                     <p>Aerodynamic data collection and validation</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #84cc16 0%, #a3e635 100%);">
+            <!-- Panel 11: Campus Life -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #84cc16 0%, #a3e635 100%);" data-short-description="UC Riverside mechanical engineering program - Academic journey through mechanical engineering curriculum with hands-on projects, lab work, and industry-relevant coursework.">
                 <div class="gallery-caption">
                     <h4>Campus Life</h4>
                     <p>UC Riverside mechanical engineering program</p>
                 </div>
             </div>
 
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);">
+            <!-- Panel 12: Hobby Projects -->
+            <div class="gallery-panel" style="background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);" data-short-description="Personal robotics and automation experiments - DIY robotics projects including automated systems, sensor integration, and custom control systems for personal enjoyment.">
                 <div class="gallery-caption">
                     <h4>Hobby Projects</h4>
                     <p>Personal robotics and automation experiments</p>
@@ -323,17 +429,41 @@
             </div>
         </div>
 
-        <div class="gallery-info">
-            <div class="gallery-info-item">
-                <span>📍</span>
-                <span id="panelInfo">Panel 1 of 12</span>
-            </div>
-        </div>
-
         <div class="scroll-hint">
             Use arrow buttons or swipe to navigate
         </div>
     </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-content">
+            <div class="lightbox-header">
+                <h2 class="lightbox-title" id="lightboxTitle">Gallery Item</h2>
+                <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="lightbox-main">
+                <div class="lightbox-image">
+                    <img id="lightboxImage" src="" alt="">
+                </div>
+                <div class="lightbox-details">
+                    <h3 id="lightboxSubtitle">Description</h3>
+                    <p id="lightboxDescription">Description text</p>
+                    <div class="lightbox-tags" id="lightboxTags">
+                        <span class="lightbox-tag">Engineering</span>
+                        <span class="lightbox-tag">Design</span>
+                    </div>
+                </div>
+            </div>
+            <div class="lightbox-short">
+                <p id="lightboxShort" style="margin: 0;">Short description</p>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -348,26 +478,90 @@
             const container = document.getElementById('galleryContainer');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
-            const panelInfo = document.getElementById('panelInfo');
             const panels = container.querySelectorAll('.gallery-panel');
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxTitle = document.getElementById('lightboxTitle');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxDescription = document.getElementById('lightboxDescription');
+            const lightboxSubtitle = document.getElementById('lightboxSubtitle');
+            const lightboxTags = document.getElementById('lightboxTags');
+            const lightboxShort = document.getElementById('lightboxShort');
+            const lightboxClose = document.getElementById('lightboxClose');
 
-            function updateInfo() {
-                const currentIndex = container.scrollLeft / (container.scrollWidth - container.clientWidth);
-                const panelIndex = Math.min(Math.round(currentIndex * (panels.length - 1)), panels.length - 1);
-                panelInfo.textContent = `Panel ${panelIndex + 1} of ${panels.length}`;
+            let currentPanel = null;
+
+            function openLightbox(panel) {
+                currentPanel = panel;
+                const shortDesc = panel.getAttribute('data-short-description');
+                const caption = panel.querySelector('.gallery-caption');
+                const h4 = caption.querySelector('h4');
+                const p = caption.querySelector('p');
+
+                lightboxTitle.textContent = h4.textContent;
+                lightboxSubtitle.textContent = p.textContent;
+                lightboxDescription.textContent = shortDesc;
+                lightboxShort.textContent = p.textContent;
+                lightboxImage.src = panel.style.background;
+
+                // Add active class
+                panels.forEach(p => p.classList.remove('active-panel'));
+                panel.classList.add('active-panel');
+
+                // Close any open modal
+                if (lightboxModal.classList.contains('active')) {
+                    lightboxModal.classList.remove('active');
+                }
+
+                // Open modal with fade-in
+                setTimeout(() => {
+                    lightboxModal.classList.add('active');
+                }, 100);
+
+                // Update keyboard focus
+                lightboxClose.focus();
             }
 
-            container.addEventListener('scroll', updateInfo);
+            function closeLightbox() {
+                lightboxModal.classList.remove('active');
 
+                // Reset active classes
+                if (currentPanel) {
+                    currentPanel.classList.remove('active-panel');
+                }
+            }
+
+            // Panel click handlers
+            panels.forEach(panel => {
+                panel.addEventListener('click', () => {
+                    openLightbox(panel);
+                });
+            });
+
+            // Close button
+            lightboxClose.addEventListener('click', closeLightbox);
+
+            // Close on outside click
+            lightboxModal.addEventListener('click', (e) => {
+                if (e.target === lightboxModal) {
+                    closeLightbox();
+                }
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+
+            // Navigation buttons
             prevBtn.addEventListener('click', () => {
-                container.scrollBy({ left: -500, behavior: 'smooth' });
+                container.scrollBy({ left: -800, behavior: 'smooth' });
             });
 
             nextBtn.addEventListener('click', () => {
-                container.scrollBy({ left: 500, behavior: 'smooth' });
+                container.scrollBy({ left: 800, behavior: 'smooth' });
             });
-
-            updateInfo();
         });
     </script>
 </body>
