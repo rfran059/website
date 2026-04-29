@@ -835,12 +835,8 @@ body:not(.page-home) .hero::before {
   color: var(--color-text-main);
 }
 
-/* Gallery page h2 in section-title - matches other page section titles */
-.page-gallery .section-title h2 {
-  font-size: 1.5rem;
-  line-height: 1.4;
-  color: var(--color-text-main);
-}
+/* Gallery page section-title uses default h2 styling (same as contact and other pages) */
+/* No override needed - h2 inherits clamp(2rem, 4vw, 3rem) from base styles */
 
 .page-about .main-text-panel p,
 .page-projects .main-text-panel p,
@@ -1066,37 +1062,36 @@ body:not(.page-home) .hero::before {
   grid-template-columns: 1fr 1fr;
   gap: var(--grid-gap-lg);
   margin-bottom: var(--spacing-xl);
-  align-items: start; /* Align from top */
+  align-items: start;
 }
 
-/* Contact Cards */
+/* Contact Cards - wider grid to prevent text wrap */
 .contact-cards {
   display: grid;
   gap: var(--grid-gap);
 }
 
-/* Two-column bento grid layout for contact cards - wider columns */
+/* Two-column bento grid layout - wider cards (400px min) */
 .contact-cards.bento {
-  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, minmax(380px, 1fr));
 }
 
-/* Contact cards - increased width to prevent text wrap */
+/* Contact card content centered */
 .contact-card-email,
 .contact-card-linkedin,
 .contact-card-phone,
 .contact-card-resume {
-  min-width: 300px; /* Wider panels to prevent text wrap */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center text horizontally */
-  text-align: center; /* Center all text content */
+  align-items: center;
+  text-align: center;
 }
 
-/* Contact form - widened for larger text boxes */
+/* Contact form - full width */
 .contact-form {
-  max-width: 100%;
-  padding: 0;
-  padding-top: 40px; /* Small padding to align with card buttons */
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .contact-card-email:hover,
@@ -1168,7 +1163,7 @@ body:not(.page-home) .hero::before {
 }
 
 .contact-form textarea {
-  min-height: 120px;
+  min-height: 150px; /* Taller textarea */
   resize: vertical;
 }
 
@@ -1292,7 +1287,7 @@ footer p {
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 0.85rem 1rem;
+  padding: 0.85rem 1.5rem; /* Wider text boxes */
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
