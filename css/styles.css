@@ -1084,6 +1084,7 @@ body:not(.page-home) .hero::before {
 .contact-form {
   max-width: 100%;
   padding: 0;
+  padding-top: 80px; /* Align button with card buttons (260px card height - ~180px form content) */
 }
 
 /* Contact cards with proper height to match form */
@@ -1111,6 +1112,12 @@ body:not(.page-home) .hero::before {
 .contact-card-phone .btn-secondary,
 .contact-card-resume .btn-secondary {
   margin-top: auto;
+}
+
+/* Form submit button pushed to bottom */
+.form-submit-area {
+  margin-top: auto;
+  padding-top: var(--spacing-md);
 }
 
 @media (max-width: 768px) {
