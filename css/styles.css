@@ -1066,7 +1066,7 @@ body:not(.page-home) .hero::before {
   grid-template-columns: 1fr 1fr;
   gap: var(--grid-gap-lg);
   margin-bottom: var(--spacing-xl);
-  align-items: start;
+  align-items: end; /* Align to bottom - cards will sit lower to match form height */
 }
 
 /* Contact Cards */
@@ -1080,21 +1080,38 @@ body:not(.page-home) .hero::before {
   grid-template-columns: repeat(2, 1fr);
 }
 
-/* Contact form - widened and raised higher */
+/* Contact form - widened for larger text boxes */
 .contact-form {
   max-width: 100%;
   padding: 0;
-  padding-top: 100px; /* Raised higher and widened for better balance */
+  padding-top: 120px; /* Lowered to match expanded panel height */
 }
 
-/* Contact cards - increased height to prevent text wrap and improve visual weight */
+/* Contact cards - increased height significantly to prevent text wrap */
 .contact-card-email,
 .contact-card-linkedin,
 .contact-card-phone,
 .contact-card-resume {
-  min-height: 300px; /* Increased from 260px for more space */
+  min-height: 360px; /* Increased significantly to prevent 2-line wrap */
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center text horizontally */
+  text-align: center; /* Center all text content */
+}
+
+/* Ensure contact cards stretch vertically to match form */
+.contact-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--grid-gap);
+}
+
+.contact-card-email,
+.contact-card-linkedin,
+.contact-card-phone,
+.contact-card-resume {
+  flex: 1 1 220px; /* Allow flexibility while maintaining min-height */
+  min-width: 220px;
 }
 
 .contact-card-email:hover,
@@ -1147,7 +1164,7 @@ body:not(.page-home) .hero::before {
 .contact-form textarea,
 .contact-form select {
   width: 100%;
-  padding: 0.85rem 1rem;
+  padding: 0.85rem 1.5rem; /* Widen padding for larger text boxes */
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -1176,7 +1193,7 @@ body:not(.page-home) .hero::before {
 }
 
 .contact-form {
-  max-width: 600px;
+  max-width: 90%; /* Wider form */
   margin: 0 auto;
 }
 
