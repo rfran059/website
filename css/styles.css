@@ -995,6 +995,21 @@ body:not(.page-home) .hero::before {
 .contact-card-phone .metric-badge,
 .contact-card-resume .metric-badge {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Center content in contact cards */
+.contact-card-email .metric-badge,
+.contact-card-linkedin .metric-badge,
+.contact-card-phone .metric-badge,
+.contact-card-resume .metric-badge,
+.contact-card-email p,
+.contact-card-linkedin p,
+.contact-card-phone p,
+.contact-card-resume p {
+  text-align: center;
 }
 
 /* Card icons for contact cards */
@@ -1006,11 +1021,34 @@ body:not(.page-home) .hero::before {
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(30, 58, 95, 0.3);
+  color: inherit;
 }
 
 .card-icon svg {
   width: 28px;
   height: 28px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* Email icon - accent blue */
+.contact-card-email .card-icon {
+  color: var(--color-accent);
+}
+
+/* LinkedIn icon - brand blue */
+.contact-card-linkedin .card-icon {
+  color: #0077b5;
+}
+
+/* Phone icon - gray */
+.contact-card-phone .card-icon {
+  color: #9ca3af;
+}
+
+/* Resume icon - amber */
+.contact-card-resume .card-icon {
+  color: #fbbf24;
 }
 
 /* Contact form - full width */
