@@ -716,6 +716,92 @@ section {
   color: var(--color-text-muted);
 }
 
+/* About page bento grid layout - 2x2 grid */
+.bento-grid.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--grid-gap);
+}
+
+/* Overview panel - full width at top of about page */
+.card.main-text-panel {
+  grid-column: span 2;
+}
+
+/* Skills panel */
+.skills-panel {
+  overflow: hidden;
+}
+
+.skills-panel .skills-category {
+  margin-bottom: 1.25rem;
+}
+
+.skills-panel .skills-category:last-child {
+  margin-bottom: 0;
+}
+
+.skills-panel .skills-category h4 {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  letter-spacing: 0.05em;
+}
+
+.skills-panel .skills-category div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-panel .skills-category div span {
+  white-space: nowrap;
+}
+
+/* Beyond Engineering panel styling */
+.about-interests {
+  padding: 0;
+}
+
+.about-interests > div {
+  padding: var(--spacing-sm) 0;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about-interests > div:last-of-type {
+  border-bottom: none;
+}
+
+.about-interests > div:last-child {
+  padding-bottom: 0;
+}
+
+.about-interests strong {
+  color: var(--color-text-main);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.about-interests p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+/* Responsive: stack cards on mobile */
+@media (max-width: 900px) {
+  .bento-grid.about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .card.main-text-panel {
+    grid-column: span 1;
+  }
+}
+
 /* Standard paragraph styles for all pages except home */
 .page-about .card p,
 .page-projects .card p,
@@ -958,12 +1044,18 @@ section {
   margin-bottom: var(--spacing-sm);
 }
 
+/* Contact Section Layout - split cards and form side by side */
+.contact-section-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--grid-gap-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
 /* Contact Cards */
 .contact-cards {
   display: grid;
   gap: var(--grid-gap);
-  margin-bottom: var(--spacing-xl);
-  margin-top: var(--spacing-md);
 }
 
 /* Two-column bento grid layout for contact cards */
@@ -972,9 +1064,23 @@ section {
 }
 
 @media (max-width: 768px) {
+  .contact-section-layout {
+    grid-template-columns: 1fr;
+  }
+
   .contact-cards {
     grid-template-columns: 1fr;
   }
+}
+
+/* Contact Form Wrapper */
+.contact-form-wrapper {
+  margin-top: var(--spacing-lg);
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Footer */

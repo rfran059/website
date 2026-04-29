@@ -35,12 +35,12 @@
             <div class="section-title">
                 <h2>Get In Touch</h2>
             </div>
-            <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem auto;">
+            <p class="text-center" style="max-width: 600px; margin: 0 auto 2rem auto;">
                 Interested in collaboration or have a question about my projects? Send me a message.
             </p>
 
-            <!-- Stacked contact cards with bento grid layout -->
-            <div class="contact-cards bento">
+            <div class="contact-section-layout">
+                <div class="contact-cards bento">
                 <div class="card">
                     <span class="metric-badge">Email</span>
                     <p style="color: var(--color-text-main); margin-bottom: var(--spacing-md); font-size: 1.1rem;">rfran059@ucr.edu</p>
@@ -74,7 +74,8 @@
                 </div>
             </div>
 
-            <form class="contact-form" id="contactForm" novalidate>
+            <div class="contact-form-wrapper">
+                <form class="contact-form" id="contactForm" novalidate>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -102,6 +103,8 @@
                     Message ready! Your email client will open to send.
                 </div>
             </form>
+            </div>
+        </div>
         </section>
     </main>
 
