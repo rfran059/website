@@ -821,17 +821,10 @@ body:not(.page-home) .hero::before {
 }
 
 /* Gallery - ensure horizontal scroll is always enforced */
-/* Gallery Section - wrapper for fade-in animation */
+/* Gallery Section - visible without animation */
 .gallery-section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.gallery-section.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .gallery-container {
@@ -1114,7 +1107,7 @@ footer p {
   position: relative;
   display: inline-block;
   padding-bottom: 0.75rem;
-  margin-bottom: 0;
+  margin-bottom: var(--spacing-sm);
 }
 
 .section-title h2::after {
@@ -1129,17 +1122,12 @@ footer p {
   border-radius: 2px;
 }
 
-/* Consistent spacing after section titles */
-.section-title h2 {
-  margin-bottom: var(--spacing-sm);
-}
-
-/* Subtext spacing - applies to all pages */
+/* Subtext spacing - applies to all pages (elements after section-title) */
 .section-title ~ p {
   margin-top: var(--spacing-lg);
 }
 
-/* Gallery subtext is inside gallery-hero, use different selector */
+/* Gallery hero subtext - no extra margin since it's wrapped in container */
 .page-gallery .gallery-hero .container p {
   margin-top: 0;
 }
