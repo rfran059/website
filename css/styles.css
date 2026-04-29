@@ -441,13 +441,13 @@ body:not(.page-home) .hero::before {
   margin: var(--spacing-xl) 0;
 }
 
-/* Two-column bento layout for about page */
+/* Two-column bento layout for about page (staggered like projects) */
 .bento-grid.about-layout {
-  grid-template-columns: 1fr 1fr;
+  display: grid;
   gap: var(--grid-gap);
 }
 
-/* Ensure main text panel spans full width on about page */
+/* Main text panel spans full width on desktop */
 .card.main-text-panel {
   grid-column: span 2;
 }
@@ -724,16 +724,17 @@ body:not(.page-home) .hero::before {
   color: var(--color-text-muted);
 }
 
-/* About page bento grid layout - 2x2 grid */
+/* About page bento grid - default single column fallback */
 .bento-grid.about-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: var(--grid-gap);
 }
 
-/* Overview panel - full width at top of about page */
-.card.main-text-panel {
-  grid-column: span 2;
+/* Use grid-span classes for about layout (same as projects) */
+@media (min-width: 768px) {
+  .card.main-text-panel {
+    grid-column: span 2;
+  }
 }
 
 /* Skills panel */
