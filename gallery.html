@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="View Russell Franklin's engineering and personal gallery featuring mechanical engineering themes and workspace shots.">
+    <meta name="description" content="View Russell Franklin's engineering gallery featuring mechanical engineering projects, CAD designs, and workspace documentation.">
     <title>Portfolio | Gallery</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9881;</text></svg>">
     <link rel="stylesheet" href="css/styles.css">
@@ -15,7 +15,7 @@
             padding: 0;
         }
         .gallery-hero {
-            padding: 8rem 0 4rem 0;
+            padding: 8rem 0 6rem 0;
             text-align: center;
         }
         .gallery-container {
@@ -25,20 +25,41 @@
             padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg);
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
         }
         .gallery-container::-webkit-scrollbar {
-            height: 8px;
+            display: none;
         }
-        .gallery-container::-webkit-scrollbar-track {
-            background: var(--color-bg);
-            border-radius: 4px;
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md) 0;
         }
-        .gallery-container::-webkit-scrollbar-thumb {
-            background: var(--color-border-light);
-            border-radius: 4px;
+        .nav-button {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
         }
-        .gallery-container::-webkit-scrollbar-thumb:hover {
+        .nav-button:hover {
             background: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+        .nav-button:active {
+            transform: scale(0.95);
+        }
+        .nav-button svg {
+            width: 20px;
+            height: 20px;
         }
         .gallery-panel {
             flex: 0 0 500px;
@@ -113,93 +134,117 @@
         .scroll-hint::before {
             content: '💡 ';
         }
+        .gallery-info {
+            padding: var(--spacing-lg);
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-xl);
+            color: var(--color-text-subtle);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
+        .gallery-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">RF.</a>
+            <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main class="gallery-page">
         <section class="gallery-hero">
             <div class="container">
-                <h1>Engineering & Workspace</h1>
+                <h1>Engineering Gallery</h1>
                 <p style="max-width: 600px; margin: 0 auto; color: var(--color-text-muted);">
-                    A collection of moments from the design and prototyping process -- from CAD screens to 3D printers to workshop benches.
+                    Documentation of mechanical engineering projects, CAD designs, and prototyping work.
                 </p>
             </div>
         </section>
 
-        <div class="gallery-container">
+        <div class="gallery-nav">
+            <button class="nav-button" id="prevBtn" aria-label="Scroll left">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button class="nav-button" id="nextBtn" aria-label="Scroll right">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <div class="gallery-container" id="galleryContainer">
             <div class="gallery-panel" style="background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);">
                 <div class="gallery-caption">
-                    <h4>CAD Design Interface</h4>
-                    <p>SolidWorks environment for aerodynamic component modeling</p>
+                    <h4>Formula SAE Front Wing</h4>
+                    <p>Multielement aerodynamic package design for race car</p>
                 </div>
             </div>
 
             <div class="gallery-panel" style="background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);">
                 <div class="gallery-caption">
-                    <h4>CFD Simulation</h4>
-                    <p>Flow visualization showing pressure distribution analysis</p>
+                    <h4>CFD Analysis</h4>
+                    <p>ANSYS Fluent validation showing pressure distribution</p>
                 </div>
             </div>
 
             <div class="gallery-panel" style="background: linear-gradient(135deg, #0f1a2e 0%, #111d2f 100%);">
                 <div class="gallery-caption">
-                    <h4>Workshop Workspace</h4>
-                    <p>Organized bench for mechanical assembly and prototyping</p>
+                    <h4>3D Printed Enclosure</h4>
+                    <p>HiFi speaker bass reflex with 19 interlocking parts</p>
                 </div>
             </div>
 
             <div class="gallery-panel" style="background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);">
                 <div class="gallery-caption">
-                    <h4>3D Printer</h4>
-                    <p>FDM printer bringing CAD designs to physical form</p>
+                    <h4>Airfoil Testing Rig</h4>
+                    <p>Experimental validation apparatus for wind tunnel testing</p>
                 </div>
             </div>
 
             <div class="gallery-panel" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);">
                 <div class="gallery-caption">
-                    <h4>Mechanical Components</h4>
-                    <p>Precision-machined parts for aerospace applications</p>
+                    <h4>Smart Pill Bottle</h4>
+                    <p>Arduino-based medication tracking prototype</p>
                 </div>
             </div>
 
             <div class="gallery-panel" style="background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);">
                 <div class="gallery-caption">
-                    <h4>Engineering Tools</h4>
-                    <p>Professional-grade instruments for measurement and analysis</p>
-                </div>
-            </div>
-
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);">
-                <div class="gallery-caption">
-                    <h4>Prototyping Setup</h4>
-                    <p>Quick-assembly jig for iterative design testing</p>
-                </div>
-            </div>
-
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);">
-                <div class="gallery-caption">
-                    <h4>Testing Equipment</h4>
-                    <p>Data acquisition system for performance validation</p>
-                </div>
-            </div>
-
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #ec4899 0%, #0ea5e9 100%);">
-                <div class="gallery-caption">
-                    <h4>Blueprint Sketches</h4>
-                    <p>Hand-drawn design iterations before digital modeling</p>
-                </div>
-            </div>
-
-            <div class="gallery-panel" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
-                <div class="gallery-caption">
-                    <h4>Formula SAE</h4>
-                    <p>Aerodynamics team collaborating on design integration</p>
+                    <h4>Blueprint & Documentation</h4>
+                    <p>Technical drawings and design iterations</p>
                 </div>
             </div>
         </div>
 
+        <div class="gallery-info">
+            <div class="gallery-info-item">
+                <span>📍</span>
+                <span id="panelInfo">Panel 1 of 6</span>
+            </div>
+        </div>
+
         <div class="scroll-hint">
-            Swipe or scroll to explore more
+            Use arrow buttons or swipe to navigate
         </div>
     </main>
 
@@ -211,5 +256,32 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('galleryContainer');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const panelInfo = document.getElementById('panelInfo');
+            const panels = container.querySelectorAll('.gallery-panel');
+
+            function updateInfo() {
+                const currentIndex = container.scrollLeft / (container.scrollWidth - container.clientWidth);
+                const panelIndex = Math.min(Math.round(currentIndex * (panels.length - 1)), panels.length - 1);
+                panelInfo.textContent = `Panel ${panelIndex + 1} of ${panels.length}`;
+            }
+
+            container.addEventListener('scroll', updateInfo);
+
+            prevBtn.addEventListener('click', () => {
+                container.scrollBy({ left: -500, behavior: 'smooth' });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                container.scrollBy({ left: 500, behavior: 'smooth' });
+            });
+
+            updateInfo();
+        });
+    </script>
 </body>
 </html>

@@ -270,7 +270,7 @@ nav {
 /* Hero Section */
 .hero {
   position: relative;
-  padding: var(--spacing-3xl) 0 var(--spacing-2xl) 0;
+  padding: 12rem 0 10rem 0;
   text-align: center;
   overflow: hidden;
 }
@@ -575,12 +575,6 @@ section {
   margin-bottom: 0.25rem;
 }
 
-.timeline-position {
-  font-size: 0.85rem;
-  color: var(--color-text-subtle);
-  font-style: italic;
-}
-
 .timeline-title {
   font-size: 1.1rem;
   font-weight: 600;
@@ -695,45 +689,12 @@ footer p {
   margin-top: 0.25rem;
 }
 
-/* Skill Bars */
-.skill-bar {
-  height: 6px;
-  background: var(--color-bg-dark);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  margin-top: 0.5rem;
-}
-
-.skill-bar-fill {
-  height: 100%;
-  background: var(--gradient-accent);
-  border-radius: var(--radius-sm);
-  width: 0;
-  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.skills-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.skill-item {
+/* Timeline Icon */
+.timeline-icon {
+  flex-shrink: 0;
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.skill-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  font-family: var(--font-mono);
-}
-
-.skill-label span:last-child {
-  color: var(--color-accent);
+  align-items: center;
+  justify-content: center;
 }
 
 /* Project Illustration Container */
@@ -857,7 +818,7 @@ footer p {
 /* Responsive Breakpoints */
 @media (max-width: 768px) {
   .hero {
-    padding: var(--spacing-2xl) 0 var(--spacing-xl) 0;
+    padding: 8rem 0 6rem 0;
   }
 
   .hero p {
@@ -969,7 +930,7 @@ footer p {
 }
 
 .gallery-hero {
-  padding: 8rem 0 4rem 0;
+  padding: 8rem 0 6rem 0;
   text-align: center;
 }
 
@@ -984,21 +945,7 @@ footer p {
 }
 
 .gallery-container::-webkit-scrollbar {
-  height: 8px;
-}
-
-.gallery-container::-webkit-scrollbar-track {
-  background: var(--color-bg);
-  border-radius: 4px;
-}
-
-.gallery-container::-webkit-scrollbar-thumb {
-  background: var(--color-border-light);
-  border-radius: 4px;
-}
-
-.gallery-container::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  display: none;
 }
 
 .gallery-panel {
@@ -1212,6 +1159,6 @@ footer p {
   }
 
   .gallery-hero {
-    padding: 4rem 0 2rem 0;
+    padding: 6rem 0 4rem 0;
   }
 }
