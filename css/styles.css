@@ -1089,9 +1089,49 @@ body:not(.page-home) .hero::before {
   }
 }
 
-/* Contact Form Wrapper */
-.contact-form-wrapper {
-  margin-top: var(--spacing-lg);
+
+.contact-form .form-group {
+  margin-bottom: 0;
+}
+
+.contact-form label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--color-text-subtle);
 }
 
 .contact-form {
@@ -1204,24 +1244,6 @@ footer p {
 .dwg-accent-text { fill: var(--color-accent-light); font-family: 'JetBrains Mono', monospace; font-size: 7px; }
 .dwg-bar { fill: rgba(14, 165, 233, 0.6); }
 .dwg-bar-teal { fill: rgba(6, 182, 212, 0.5); }
-
-/* Contact Form */
-.contact-form {
-  max-width: 560px;
-  margin: var(--spacing-2xl) auto 0;
-}
-
-.form-group {
-  margin-bottom: 1.25rem;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  margin-bottom: 0.5rem;
-}
 
 .form-group input,
 .form-group textarea,
