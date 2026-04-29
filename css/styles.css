@@ -957,98 +957,45 @@ body:not(.page-home) .hero::before {
   margin-bottom: var(--spacing-sm);
 }
 
-/* Contact Section Layout - split cards and form side by side */
+/* Contact Section Layout - vertical stack of cards */
 .contact-section-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--grid-gap-lg);
-  margin-bottom: var(--spacing-xl);
-  align-items: start;
-}
-
-/* Contact Cards - wider grid to prevent text wrap */
-.contact-cards {
-  display: grid;
-  gap: var(--grid-gap);
-}
-
-/* Two-column bento grid layout - wider cards (400px min) */
-.contact-cards.bento {
-  grid-template-columns: repeat(2, minmax(380px, 1fr));
-}
-
-/* Contact card content centered */
-.contact-card-email,
-.contact-card-linkedin,
-.contact-card-phone,
-.contact-card-resume {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  min-height: 320px;
+  gap: var(--grid-gap);
+  margin-bottom: var(--spacing-xl);
 }
 
-/* Full-width metric badges on contact cards */
-.contact-card-email .metric-badge,
-.contact-card-linkedin .metric-badge,
-.contact-card-phone .metric-badge,
-.contact-card-resume .metric-badge {
-  width: 100%;
+/* Flat rectangular contact cards */
+.contact-card {
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Center content in contact cards */
-.contact-card-email .metric-badge,
-.contact-card-linkedin .metric-badge,
-.contact-card-phone .metric-badge,
-.contact-card-resume .metric-badge,
-.contact-card-email p,
-.contact-card-linkedin p,
-.contact-card-phone p,
-.contact-card-resume p {
-  text-align: center;
-}
-
-/* Card icons for contact cards */
-.card-icon {
-  padding: var(--spacing-sm);
+  flex-direction: column;
+  padding: var(--spacing-lg) var(--spacing-md);
   background: var(--color-surface);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: 1px solid rgba(30, 58, 95, 0.3);
-  color: inherit;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: all var(--transition-smooth);
+  min-height: 200px;
+  text-align: center;
 }
 
-.card-icon svg {
-  width: 28px;
-  height: 28px;
-  fill: currentColor;
-  stroke: currentColor;
+.contact-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(14, 165, 233, 0.4);
+  box-shadow: var(--shadow-card-hover);
 }
 
-/* Email icon - accent blue */
-.contact-card-email .card-icon {
+.contact-card .metric-badge {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.contact-card .btn-text {
+  font-weight: 600;
   color: var(--color-accent);
-}
-
-/* LinkedIn icon - brand blue */
-.contact-card-linkedin .card-icon {
-  color: #0077b5;
-}
-
-/* Phone icon - gray */
-.contact-card-phone .card-icon {
-  color: #9ca3af;
-}
-
-/* Resume icon - amber */
-.contact-card-resume .card-icon {
-  color: #fbbf24;
+  margin-top: auto;
 }
 
 /* Contact form - full width */
@@ -1083,11 +1030,16 @@ body:not(.page-home) .hero::before {
 
 @media (max-width: 768px) {
   .contact-section-layout {
-    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
   }
 
-  .contact-cards {
-    grid-template-columns: 1fr;
+  .contact-card {
+    min-height: 160px;
+    padding: var(--spacing-md);
+  }
+
+  .contact-card .btn-text {
+    font-size: 0.9rem;
   }
 }
 
