@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn about Russell Franklin - Mechanical Engineering student specializing in CAD/CAE, prototyping, and aerodynamic design.">
     <title>Portfolio | About</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com;">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9881;</text></svg>">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <header>
         <nav class="container">
             <a href="index.html" class="logo">RF.</a>
@@ -30,23 +32,23 @@
         </nav>
     </header>
 
-    <main class="container page-about">
+    <main id="main" class="container page-about">
         <section>
             <div class="section-title">
                 <h2>About Me</h2>
             </div>
-            <div class="bento-grid about-layout" style="grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(100px, auto);">
+            <div class="bento-grid about-grid">
                 <!-- Row 1: Overview (full width) + Skills (half width) -->
-                <div class="card" style="grid-column: 1 / 3;">
-                    <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem; line-height: 1.4; color: var(--color-text-main);">Mechanical Engineering Student</h2>
+                <div class="card about-full-card">
+                    <h2 class="about-heading">Mechanical Engineering Student</h2>
                     <div class="about-description">
-                        <p style="margin-bottom: var(--spacing-md);">
+                        <p class="about-division">
                             I design and build mechanical systems with precision and purpose. As a Mechanical Engineering student at UC Riverside, I transform concepts into tangible solutions -- from aerodynamic front wings tested in CFD to HiFi speakers that deliver pristine audio through custom 3D-printed enclosures.
                         </p>
-                        <p style="margin-bottom: var(--spacing-md);">
+                        <p class="about-division">
                             My approach blends computational tools (ANSYS, SolidWorks) with hands-on prototyping (3D printing, CNC machining) to create systems that perform. I believe great engineering bridges the gap between digital design and physical reality.
                         </p>
-                        <p style="margin-bottom: var(--spacing-md);">
+                        <p class="about-division">
                             <strong>Focus Areas:</strong> Aerodynamic design, CAD/CAE simulation, rapid prototyping, and experimental testing. I work at the intersection of theory and practice, using computational fluid dynamics to validate physical designs before they ever touch a manufacturing tool.
                         </p>
                         <p>
@@ -60,8 +62,8 @@
                     <h3>Skills</h3>
                     <div class="skills-list">
                         <div class="skills-category">
-                            <h4 style="margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase; color: var(--color-text-subtle); letter-spacing: 0.05em;">CAD & Simulation</h4>
-                            <div style="display: flex; flex-wrap: gap: 0.5rem; width: 100%;">
+                            <h4 class="about-category">CAD & Simulation</h4>
+                            <div class="about-flex-row">
                                 <span class="tech-badge">SolidWorks Flow + Simulation</span>
                                 <span class="tech-badge">ANSYS Fluent + Mechanical</span>
                                 <span class="tech-badge">Autodesk Inventor</span>
@@ -69,23 +71,23 @@
                             </div>
                         </div>
                         <div class="skills-category">
-                            <h4 style="margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase; color: var(--color-text-subtle); letter-spacing: 0.05em;">Analysis & Computation</h4>
-                            <div style="display: flex; flex-wrap: gap: 0.5rem; width: 100%;">
+                            <h4 class="about-category">Analysis & Computation</h4>
+                            <div class="about-flex-row">
                                 <span class="tech-badge">MATLAB</span>
                                 <span class="tech-badge">OpenFOAM</span>
                             </div>
                         </div>
                         <div class="skills-category">
-                            <h4 style="margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase; color: var(--color-text-subtle); letter-spacing: 0.05em;">Prototyping & Manufacturing</h4>
-                            <div style="display: flex; flex-wrap: gap: 0.5rem; width: 100%;">
+                            <h4 class="about-category">Prototyping & Manufacturing</h4>
+                            <div class="about-flex-row">
                                 <span class="tech-badge">3D Printing</span>
                                 <span class="tech-badge">CNC Machining</span>
                                 <span class="tech-badge">Rapid Prototyping</span>
                             </div>
                         </div>
                         <div class="skills-category">
-                            <h4 style="margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase; color: var(--color-text-subtle); letter-spacing: 0.05em;">Testing & Validation</h4>
-                            <div style="display: flex; flex-wrap: gap: 0.5rem; width: 100%;">
+                            <h4 class="about-category">Testing & Validation</h4>
+                            <div class="about-flex-row">
                                 <span class="tech-badge">Experimental Testing</span>
                                 <span class="tech-badge">Data Collection</span>
                                 <span class="tech-badge">GD&T</span>
@@ -100,7 +102,7 @@
                     <h3>Career Journey</h3>
                     <div class="timeline">
                         <div class="timeline-item">
-                            <div class="timeline-icon" style="position: absolute; left: 4px; top: 2px; width: 24px; height: 24px; background: rgba(6, 182, 212, 0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                            <div class="timeline-icon about-timeline-icon">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
                                     <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
@@ -109,11 +111,11 @@
                             <div class="timeline-title">University of California, Riverside</div>
                             <div class="timeline-description">B.S. Mechanical Engineering (Expected)</div>
                             <div class="timeline-date">Jun 2023 -- Expected Jun 2027</div>
-                            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin: 0.5rem 0 0 0;">GPA: 3.6</p>
-                            <p style="color: var(--color-text-subtle); font-size: 0.75rem; margin: 0.5rem 0 0 0;">Relevant Coursework: CAD/CAE, Fluid Mechanics, Thermodynamics, Manufacturing Processes, Experimental Testing</p>
+                            <p class="about-timeline-p short">GPA: 3.6</p>
+                            <p class="about-timeline-p very-short">Relevant Coursework: CAD/CAE, Fluid Mechanics, Thermodynamics, Manufacturing Processes, Experimental Testing</p>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-icon" style="position: absolute; left: 4px; top: 2px; width: 24px; height: 24px; background: rgba(14, 165, 233, 0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                            <div class="timeline-icon about-timeline-icon accent">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="16 18 22 12 16 6"></polyline>
                                     <polyline points="8 6 2 12 8 18"></polyline>
@@ -122,10 +124,10 @@
                             <div class="timeline-title">America's Tire</div>
                             <div class="timeline-description">Technician Lead, Santa Rosa, CA</div>
                             <div class="timeline-date">Aug 2020 -- Mar 2024</div>
-                            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin: 0.5rem 0 0 0;">Led maintenance and repair operations for commercial vehicle fleet. Managed inventory systems and trained junior technicians on diagnostic procedures.</p>
+                            <p class="about-timeline-p short">Led maintenance and repair operations for commercial vehicle fleet. Managed inventory systems and trained junior technicians on diagnostic procedures.</p>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-icon" style="position: absolute; left: 4px; top: 2px; width: 24px; height: 24px; background: rgba(6, 182, 212, 0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                            <div class="timeline-icon about-timeline-icon">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
                                     <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
@@ -134,26 +136,26 @@
                             <div class="timeline-title">Santa Rosa Junior College</div>
                             <div class="timeline-description">Mechanical Engineering Transfer (AA)</div>
                             <div class="timeline-date">Aug 2020 -- Jun 2023</div>
-                            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin: 0.5rem 0 0 0;">GPA: 3.4 | Coursework: Statics, Dynamics, Thermodynamics, Mechanics of Materials, Fluid Mechanics</p>
+                            <p class="about-timeline-p short">GPA: 3.4 | Coursework: Statics, Dynamics, Thermodynamics, Mechanics of Materials, Fluid Mechanics</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="card" style="grid-column: 1 / 3;">
+                <div class="card about-full-card">
                     <span class="metric-badge">Interests</span>
                     <h3>Beyond Engineering</h3>
                     <div class="about-interests">
-                        <div style="margin-bottom: var(--spacing-md);">
-                            <strong style="color: var(--color-text-main); display: block; margin-bottom: 0.25rem;">🏎️ Formula SAE</strong>
-                            <p style="font-size: 0.9rem; margin-bottom: 0;">Aerodynamics team member designing front wing packages with CFD validation and experimental testing.</p>
+                        <div class="about-division">
+                            <strong class="about-interest-strong">🏎️ Formula SAE</strong>
+                            <p class="about-interest-p">Aerodynamics team member designing front wing packages with CFD validation and experimental testing.</p>
                         </div>
-                        <div style="margin-bottom: var(--spacing-md);">
-                            <strong style="color: var(--color-text-main); display: block; margin-bottom: 0.25rem;">🎵 HiFi Audio</strong>
-                            <p style="font-size: 0.9rem; margin-bottom: 0;">Custom 3D-printed speaker enclosures with VituixCAD crossover design. Total harmonic distortion < 0.1%.</p>
+                        <div class="about-division">
+                            <strong class="about-interest-strong">🎵 HiFi Audio</strong>
+                            <p class="about-interest-p">Custom 3D-printed speaker enclosures with VituixCAD crossover design. Total harmonic distortion < 0.1%.</p>
                         </div>
                         <div>
-                            <strong style="color: var(--color-text-main); display: block; margin-bottom: 0.25rem;">🛠️ Making</strong>
-                            <p style="font-size: 0.9rem; margin-bottom: 0;">Workshop hobbyist experimenting with CNC machining, 3D printing, and electronics integration projects.</p>
+                            <strong class="about-interest-strong">🛠️ Making</strong>
+                            <p class="about-interest-p">Workshop hobbyist experimenting with CNC machining, 3D printing, and electronics integration projects.</p>
                         </div>
                     </div>
                 </div>
@@ -164,7 +166,7 @@
     <footer>
         <div class="container">
             <p>2026 Russell Franklin | B.S. Mechanical Engineering @ UCR</p>
-            <p style="color: var(--color-text-muted); margin: 0.5rem 0;">rfran059@ucr.edu</p>
+            <p class="footer-email rfran059@ucr.edu">rfran059@ucr.edu</p>
         </div>
     </footer>
 

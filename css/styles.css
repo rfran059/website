@@ -61,6 +61,27 @@
   --grid-gap-lg: 1.75rem;
 }
 
+/* Skip Link for Accessibility */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--color-accent);
+  color: white;
+  padding: 1rem 1.5rem;
+  z-index: 10000;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius-md) 0;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid white;
+  outline-offset: 2px;
+}
+
 /* Reset & Base */
 *,
 *::before,
@@ -369,9 +390,17 @@ body:not(.page-home) .hero h1 {
   flex-wrap: wrap;
 }
 
-/* Section Padding */
+/* Section Padding - Unified rule */
 section {
   padding: var(--spacing-2xl) 0;
+}
+
+/* Non-home pages use smaller section padding */
+.page-about section,
+.page-projects section,
+.page-gallery section,
+.page-contact section {
+  padding: var(--spacing-xl) 0;
 }
 
 /* Increase spacing after hero for non-home pages (main content sections) */
@@ -622,7 +651,7 @@ body:not(.page-home) .hero::before {
 }
 
 .status-production {
-  background: rgba(16, 185, 129, 0.15);
+  background: rgba(16, 185, 129, 0.25); /* Increased opacity for better contrast */
   color: #4ade80;
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
@@ -668,7 +697,7 @@ body:not(.page-home) .hero::before {
   transform: translateY(0);
 }
 
-/* About Page Timeline */
+/* About Description Panel - Unified styles (removed duplicate at line 794) */
 .timeline {
   position: relative;
   padding: var(--spacing-lg) 0;
@@ -790,36 +819,6 @@ body:not(.page-home) .hero::before {
   line-height: 1.7;
 }
 
-/* Main text panel content styling */
-.about-description {
-  padding: var(--spacing-md) 0;
-}
-
-.about-description p {
-  margin-bottom: var(--spacing-md);
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-
-.about-description p:last-child {
-  margin-bottom: 0;
-}
-
-.about-description > p:last-child::before {
-  content: '';
-  display: block;
-  margin-top: 1.25rem;
-  width: 40px;
-  height: 3px;
-  background: var(--gradient-accent);
-  border-radius: 2px;
-}
-
-.about-description strong {
-  color: var(--color-text-main);
-  font-weight: 600;
-}
-
 /* Gallery - ensure horizontal scroll is always enforced */
 /* Gallery Section - visible without animation */
 .gallery-section {
@@ -854,28 +853,7 @@ body:not(.page-home) .hero::before {
 }
 
 
-/* Standard section spacing for all pages except home */
-.page-about section,
-.page-projects section,
-.page-gallery section,
-.page-contact section {
-  padding: var(--spacing-xl) 0;
-}
-
-/* Home page keeps larger section padding */
-.hero + .container.section-spaced,
-.hero + section {
-  padding-top: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-}
-
-/* Make home page hero extend further with cyan gradient */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+/* Standard section spacing - already defined above */
 
 .hero::before {
   content: '';
@@ -915,6 +893,22 @@ body:not(.page-home) .hero::before {
       radial-gradient(ellipse at 80% 50%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
       radial-gradient(ellipse at 50% 20%, rgba(14, 165, 233, 0.04) 0%, transparent 60%);
   }
+}
+
+/* Feature Icons */
+.feature-icon {
+  margin-bottom: 1rem;
+}
+
+/* Feature Subtext */
+.feature-subtext {
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+}
+
+/* Spacer utility */
+.spacer {
+  height: 4rem;
 }
 
 /* Feature Grid */
@@ -1075,11 +1069,7 @@ body:not(.page-home) .hero::before {
 .contact-form textarea::placeholder {
   color: var(--color-text-subtle);
 }
-
-.contact-form {
-  max-width: 90%; /* Wider form */
-  margin: 0 auto;
-}
+/* Removed duplicate .contact-form max-width/margin definition at line 1049-1052 */
 
 /* Footer */
 footer {
@@ -1123,11 +1113,38 @@ footer p {
 }
 
 /* Subtext spacing - applies to all pages (elements after section-title) */
-.section-title ~ p {
+/* For pages where p is direct child of .section-title (like projects.html) */
+.section-title > p {
   margin-top: var(--spacing-2xl);
   margin-bottom: var(--spacing-lg);
-  display: inline-block;
+  display: block;
   max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* For pages where p is direct child of section (like contact.html) */
+.section-title ~ section > p {
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-lg);
+  display: block;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Gallery hero subtext - no extra margin (uses different spacing) */
+.page-gallery .gallery-hero .container p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Gallery hero subtext - no extra margin (uses different spacing) */
+.page-gallery .gallery-hero .container p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
 }
 
 /* Gallery hero subtext - no extra margin (uses different spacing) */
@@ -1202,38 +1219,7 @@ footer p {
 .dwg-accent-text { fill: var(--color-accent-light); font-family: 'JetBrains Mono', monospace; font-size: 7px; }
 .dwg-bar { fill: rgba(14, 165, 233, 0.6); }
 .dwg-bar-teal { fill: rgba(6, 182, 212, 0.5); }
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 0.85rem 1.5rem; /* Wider text boxes */
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  color: var(--color-text-main);
-  font-family: var(--font-main);
-  font-size: 1rem;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-  outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-}
-
-.form-group textarea {
-  min-height: 140px;
-  resize: vertical;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: var(--color-text-subtle);
-}
+/* Duplicate .form-group styles removed - contact-form styles already define these */
 
 .form-success {
   display: none;
@@ -1248,6 +1234,211 @@ footer p {
 
 .form-success.show {
   display: block;
+}
+
+/* Form Error Styles */
+.form-error {
+  display: none;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  color: #f87171;
+  font-weight: 500;
+  text-align: center;
+}
+
+.form-error.show {
+  display: block;
+}
+
+/* Gallery Page Inline Styles - moved from gallery.html */
+.gallery-page {
+  padding: 0;
+}
+
+.gallery-hero {
+  padding: 6rem 0 4rem 0;
+  text-align: center;
+}
+
+.gallery-hero p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.gallery-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+}
+
+.nav-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.nav-button:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.nav-button:active {
+  transform: scale(0.95);
+}
+
+.nav-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* About Page Layout Classes */
+.about-grid {
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.about-full-card {
+  grid-column: 1 / 3;
+}
+
+.about-heading {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--color-text-main);
+}
+
+.about-category h4 {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  letter-spacing: 0.05em;
+}
+
+.about-flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.about-timeline-icon {
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  background: rgba(6, 182, 212, 0.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-timeline-icon.accent {
+  background: rgba(14, 165, 233, 0.1);
+}
+
+.about-timeline-p {
+  margin: 0.5rem 0 0 0;
+}
+
+.about-timeline-p.short {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.about-timeline-p.very-short {
+  color: var(--color-text-subtle);
+  font-size: 0.75rem;
+}
+
+.about-division {
+  margin-bottom: var(--spacing-md);
+}
+
+.about-division:last-of-type {
+  border-bottom: none;
+}
+
+.about-division:last-child {
+  padding-bottom: 0;
+}
+
+.about-interest-strong {
+  color: var(--color-text-main);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.about-interest-p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.about-section {
+  padding: var(--spacing-md) 0;
+}
+
+/* Tech Stack */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Featured Subtext */
+.featured-subtext,
+.feature-subtext {
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure subtext stays centered in bento-grid containers */
+.bento-grid ~ .container > .section-spaced ~ .featured-subtext,
+.bento-grid ~ .container > .section-spaced ~ .feature-subtext {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Section Spacing */
+.spacer-large {
+  padding-top: 6rem !important;
+}
+
+.spacing-small {
+  padding-top: 1rem !important;
+}
+
+.title-spacing {
+  padding-top: 2rem !important;
+}
+
+/* Footer Email */
+.footer-email {
+  color: var(--color-text-muted);
+  margin: 0.5rem 0;
 }
 
 /* Footer Social Links */

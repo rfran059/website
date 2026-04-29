@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="View Russell Franklin's visual gallery featuring engineering projects, CAD designs, and personal photography.">
     <title>Portfolio | Gallery</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com;">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9881;</text></svg>">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        .gallery-page {
             padding: 0;
         }
         .gallery-hero {
@@ -287,9 +286,9 @@
                 grid-column: span 1;
             }
         }
-    </style>
-</head>
+    </head>
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <header>
         <nav class="container">
             <a href="index.html" class="logo">RF.</a>
@@ -308,7 +307,7 @@
         </nav>
     </header>
 
-    <main class="gallery-page page-gallery">
+    <main id="main" class="gallery-page page-gallery">
         <section class="gallery-hero">
             <div class="container">
                 <div class="section-title">
@@ -462,7 +461,7 @@
                 </div>
             </div>
             <div class="lightbox-short">
-                <p id="lightboxShort" style="margin: 0;">Short description</p>
+                <p id="lightboxShort">Short description</p>
             </div>
         </div>
     </div>
@@ -475,96 +474,6 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('galleryContainer');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const panels = container.querySelectorAll('.gallery-panel');
-            const lightboxModal = document.getElementById('lightboxModal');
-            const lightboxTitle = document.getElementById('lightboxTitle');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const lightboxDescription = document.getElementById('lightboxDescription');
-            const lightboxSubtitle = document.getElementById('lightboxSubtitle');
-            const lightboxTags = document.getElementById('lightboxTags');
-            const lightboxShort = document.getElementById('lightboxShort');
-            const lightboxClose = document.getElementById('lightboxClose');
-
-            let currentPanel = null;
-
-            function openLightbox(panel) {
-                currentPanel = panel;
-                const shortDesc = panel.getAttribute('data-short-description');
-                const caption = panel.querySelector('.gallery-caption');
-                const h4 = caption.querySelector('h4');
-                const p = caption.querySelector('p');
-
-                lightboxTitle.textContent = h4.textContent;
-                lightboxSubtitle.textContent = p.textContent;
-                lightboxDescription.textContent = shortDesc;
-                lightboxShort.textContent = p.textContent;
-                lightboxImage.src = panel.style.background;
-
-                // Add active class
-                panels.forEach(p => p.classList.remove('active-panel'));
-                panel.classList.add('active-panel');
-
-                // Close any open modal
-                if (lightboxModal.classList.contains('active')) {
-                    lightboxModal.classList.remove('active');
-                }
-
-                // Open modal with fade-in
-                setTimeout(() => {
-                    lightboxModal.classList.add('active');
-                }, 100);
-
-                // Update keyboard focus
-                lightboxClose.focus();
-            }
-
-            function closeLightbox() {
-                lightboxModal.classList.remove('active');
-
-                // Reset active classes
-                if (currentPanel) {
-                    currentPanel.classList.remove('active-panel');
-                }
-            }
-
-            // Panel click handlers
-            panels.forEach(panel => {
-                panel.addEventListener('click', () => {
-                    openLightbox(panel);
-                });
-            });
-
-            // Close button
-            lightboxClose.addEventListener('click', closeLightbox);
-
-            // Close on outside click
-            lightboxModal.addEventListener('click', (e) => {
-                if (e.target === lightboxModal) {
-                    closeLightbox();
-                }
-            });
-
-            // Close on Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
-                    closeLightbox();
-                }
-            });
-
-            // Navigation buttons
-            prevBtn.addEventListener('click', () => {
-                container.scrollBy({ left: -800, behavior: 'smooth' });
-            });
-
-            nextBtn.addEventListener('click', () => {
-                container.scrollBy({ left: 800, behavior: 'smooth' });
-            });
-        });
-    </script>
+    <script src="js/gallery.js"></script>
 </body>
 </html>
