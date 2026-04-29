@@ -1075,16 +1075,9 @@ body:not(.page-home) .hero::before {
   gap: var(--grid-gap);
 }
 
-/* Two-column bento grid layout for contact cards */
+/* Two-column bento grid layout for contact cards - wider columns */
 .contact-cards.bento {
   grid-template-columns: repeat(2, 1fr);
-}
-
-/* Contact form - widened for larger text boxes */
-.contact-form {
-  max-width: 100%;
-  padding: 0;
-  padding-top: 0; /* Reset padding since panels are now wider */
 }
 
 /* Contact cards - increased width to prevent text wrap */
@@ -1092,26 +1085,18 @@ body:not(.page-home) .hero::before {
 .contact-card-linkedin,
 .contact-card-phone,
 .contact-card-resume {
-  min-width: 280px; /* Wider panels to prevent text wrap */
+  min-width: 300px; /* Wider panels to prevent text wrap */
   display: flex;
   flex-direction: column;
   align-items: center; /* Center text horizontally */
   text-align: center; /* Center all text content */
 }
 
-/* Ensure contact cards stretch vertically to match form */
-.contact-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--grid-gap);
-}
-
-.contact-card-email,
-.contact-card-linkedin,
-.contact-card-phone,
-.contact-card-resume {
-  flex: 1 1 280px; /* Allow flexibility while maintaining min-width */
-  height: 100%;
+/* Contact form - widened for larger text boxes */
+.contact-form {
+  max-width: 100%;
+  padding: 0;
+  padding-top: 40px; /* Small padding to align with card buttons */
 }
 
 .contact-card-email:hover,
