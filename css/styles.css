@@ -986,6 +986,15 @@ body:not(.page-home) .hero::before {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  min-height: 320px;
+}
+
+/* Full-width metric badges on contact cards */
+.contact-card-email .metric-badge,
+.contact-card-linkedin .metric-badge,
+.contact-card-phone .metric-badge,
+.contact-card-resume .metric-badge {
+  width: 100%;
 }
 
 /* Contact form - full width */
@@ -1005,7 +1014,7 @@ body:not(.page-home) .hero::before {
 }
 
 /* Button styling within contact cards */
-.contact-card-email .btn-primary,
+.contact-card-email .btn-secondary,
 .contact-card-linkedin .btn-secondary,
 .contact-card-phone .btn-secondary,
 .contact-card-resume .btn-secondary {
