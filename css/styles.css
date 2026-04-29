@@ -1066,6 +1066,7 @@ body:not(.page-home) .hero::before {
   grid-template-columns: 1fr 1fr;
   gap: var(--grid-gap-lg);
   margin-bottom: var(--spacing-xl);
+  align-items: start;
 }
 
 /* Contact Cards */
@@ -1077,6 +1078,39 @@ body:not(.page-home) .hero::before {
 /* Two-column bento grid layout for contact cards */
 .contact-cards.bento {
   grid-template-columns: repeat(2, 1fr);
+}
+
+/* Contact form should level with the cards */
+.contact-form {
+  max-width: 100%;
+  padding: 0;
+}
+
+/* Contact cards with proper height to match form */
+.contact-card-email,
+.contact-card-linkedin,
+.contact-card-phone,
+.contact-card-resume {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-card-email:hover,
+.contact-card-linkedin:hover,
+.contact-card-phone:hover,
+.contact-card-resume:hover {
+  transform: translateY(-4px);
+  border-color: rgba(14, 165, 233, 0.4);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Button styling within contact cards */
+.contact-card-email .btn-primary,
+.contact-card-linkedin .btn-secondary,
+.contact-card-phone .btn-secondary,
+.contact-card-resume .btn-secondary {
+  margin-top: auto;
 }
 
 @media (max-width: 768px) {

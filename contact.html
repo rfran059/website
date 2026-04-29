@@ -41,60 +41,60 @@
 
             <div class="contact-section-layout">
                 <div class="contact-cards bento">
-                <div class="card">
-                    <span class="metric-badge">Email</span>
-                    <p style="color: var(--color-text-main); margin-bottom: var(--spacing-md); font-size: 1.1rem;">rfran059@ucr.edu</p>
-                    <a href="mailto:rfran059@ucr.edu" class="btn btn-primary" style="width: 100%;">Send Email</a>
+                    <div class="card contact-card-email">
+                        <span class="metric-badge">Email</span>
+                        <p style="color: var(--color-text-main); margin-bottom: var(--spacing-md); font-size: 1.1rem;">rfran059@ucr.edu</p>
+                        <a href="mailto:rfran059@ucr.edu" class="btn btn-primary" style="width: 100%;">Send Email</a>
+                    </div>
+
+                    <div class="card contact-card-linkedin">
+                        <span class="metric-badge" style="color: #0077b5;">LinkedIn</span>
+                        <h3 style="margin-bottom: var(--spacing-sm);">Connect</h3>
+                        <p style="color: var(--color-text-main); margin-bottom: var(--spacing-md);">linkedin.com/in/russell-franklin/</p>
+                        <a href="https://linkedin.com/in/russell-franklin/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%;">View Profile</a>
+                    </div>
+
+                    <div class="card contact-card-phone">
+                        <span class="metric-badge" style="color: #9ca3af;">Phone</span>
+                        <p style="color: var(--color-text-main); margin-bottom: var(--spacing-md); font-size: 1.1rem;">(555) 123-4567</p>
+                        <a href="tel:+15551234567" class="btn btn-secondary" style="width: 100%;">Call Now</a>
+                    </div>
+
+                    <div class="card contact-card-resume">
+                        <span class="metric-badge" style="color: #fbbf24;">Resume</span>
+                        <p style="color: var(--color-text-main); margin-bottom: var(--spacing-md); font-size: 1.1rem;">Download Resume (PDF)</p>
+                        <a href="resume.pdf" class="btn btn-secondary" style="width: 100%;">View Resume</a>
+                    </div>
                 </div>
 
-                <div class="card">
-                    <span class="metric-badge" style="color: #0077b5;">LinkedIn</span>
-                    <h3 style="margin-bottom: var(--spacing-sm);">Connect</h3>
-                    <p style="color: var(--color-text-main); margin-bottom: var(--spacing-md);">linkedin.com/in/russell-franklin/</p>
-                    <a href="https://linkedin.com/in/russell-franklin/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%;">View Profile</a>
-                </div>
-
-                    <span class="metric-badge" style="color: #9ca3af;">Phone</span>
-                    <p style="color: var(--color-text-main); margin-bottom: var(--spacing-md); font-size: 1.1rem;">(555) 123-4567</p>
-                    <a href="tel:+15551234567" class="btn btn-secondary" style="width: 100%;">Call Now</a>
-                </div>
-
-                <div class="card">
-                    <span class="metric-badge" style="color: #fbbf24;">Resume</span>
-                    <p style="color: var(--color-text-main); margin-bottom: var(--spacing-md); font-size: 1.1rem;">Download Resume (PDF)</p>
-                    <a href="resume.pdf" class="btn btn-secondary" style="width: 100%;">View Resume</a>
-                </div>
-            </div>
-
-            <div class="contact-section-layout">
                 <form class="contact-form" id="contactForm" novalidate>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <select id="subject" name="subject" required>
-                        <option value="" disabled selected>Select a topic</option>
-                        <option value="collaboration">Project Collaboration</option>
-                        <option value="consulting">Engineering Consulting</option>
-                        <option value="speaking">Speaking / Consulting</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Tell me about your project or idea..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                <div class="form-success" id="formSuccess">
-                    Message ready! Your email client will open to send.
-                </div>
-            </form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="" disabled selected>Select a topic</option>
+                            <option value="collaboration">Project Collaboration</option>
+                            <option value="consulting">Engineering Consulting</option>
+                            <option value="speaking">Speaking / Consulting</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your project or idea..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <div class="form-success" id="formSuccess">
+                        Message ready! Your email client will open to send.
+                    </div>
+                </form>
             </div>
         </section>
     </main>
