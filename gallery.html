@@ -65,12 +65,49 @@
             scrollbar-width: none;
             flex-wrap: nowrap;
         }
+        /* Gallery title - match about/projects/contact h1 size with underline */
+        .section-title h1 {
+            font-size: 1.5rem;
+            line-height: 1.4;
+            color: var(--color-text-main);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.75rem;
+        }
+        .section-title h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+        /* Gallery hero text styling */
+        .gallery-hero p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--color-text-muted);
+        }
+        /* Gallery panel hover effect */
+        .gallery-panel:hover {
+            transform: translateY(-4px);
+            border-color: rgba(14, 165, 233, 0.4);
+            box-shadow: 0 12px 40px rgba(14, 165, 233, 0.12);
+        }
+        .gallery-panel:hover img {
+            transform: scale(1.05);
+        }
+            flex-wrap: nowrap;
+        }
         .gallery-container::-webkit-scrollbar {
             display: none;
         }
         .gallery-panel {
-            flex: 0 0 400px;
-            height: 320px;
+            flex: 0 0 800px;
+            height: 640px;
             scroll-snap-align: center;
             position: relative;
             overflow: hidden;
@@ -78,7 +115,7 @@
             background: var(--color-surface);
             border: 1px solid rgba(30, 58, 95, 0.3);
             transition: all var(--transition-smooth);
-            min-width: 400px;
+            min-width: 800px;
         }
         .gallery-panel:hover {
             transform: translateY(-4px);

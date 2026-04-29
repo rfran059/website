@@ -1364,15 +1364,6 @@ footer p {
   text-align: center;
 }
 
-/* Gallery panels - 3 per row max on larger screens (1200px+) */
-@media (min-width: 1200px) {
-  .gallery-panel {
-    flex: 0 0 800px;
-    height: 640px;
-    min-width: 800px;
-  }
-}
-
 /* Skills panel specific overrides */
 .skills-panel .skills-category div {
   width: 100%;
@@ -1482,18 +1473,7 @@ footer p {
   }
 }
 
-.gallery-panel {
-  flex: 0 0 500px;
-  height: 375px;
-  scroll-snap-align: center;
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-xl);
-  background: var(--color-surface);
-  border: 1px solid rgba(30, 58, 95, 0.3);
-  transition: all var(--transition-smooth);
-  min-width: 500px;
-}
+/* Gallery panel styles are now in gallery.html inline styles */
 
 .gallery-panel:hover {
   transform: translateY(-4px);
