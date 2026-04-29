@@ -938,16 +938,7 @@ body:not(.page-home) .hero::before {
 }
 
 /* Contact Section */
-/* Standard contact card styling for non-home pages */
-.page-contact .card p,
-.page-about .card p,
-.page-projects .card p,
-.page-gallery .card p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: var(--spacing-md);
-}
-
+/* Standard contact card heading for non-home pages */
 .page-contact .card h3,
 .page-about .card h3,
 .page-projects .card h3,
@@ -968,34 +959,36 @@ body:not(.page-home) .hero::before {
 .contact-cards {
   display: flex;
   flex-direction: column;
-  gap: var(--grid-gap);
+  gap: var(--spacing-sm);
+  max-width: 320px;
 }
 
-/* Flat rectangular contact cards - same width, stacked vertically */
+/* Flat rectangular contact cards - skinnier, stacked vertically, button-like */
 .contact-card {
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-md);
+  gap: var(--spacing-sm);
+  padding: 1rem;
   background: var(--color-surface);
   border: 1px solid rgba(30, 58, 95, 0.3);
   border-radius: var(--radius-lg);
   text-decoration: none;
   transition: all var(--transition-smooth);
-  min-height: 180px;
+  min-height: auto;
   text-align: center;
+  align-items: center;
 }
 
 .contact-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   border-color: rgba(14, 165, 233, 0.4);
   box-shadow: var(--shadow-card-hover);
 }
 
 .contact-card .metric-badge {
-  display: flex;
+  display: block;
   width: 100%;
-  justify-content: center;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0.25rem;
 }
 
 .contact-card .btn-text {
@@ -1004,28 +997,11 @@ body:not(.page-home) .hero::before {
   margin-top: auto;
 }
 
-/* Contact form - full width */
+/* Contact form - full width container */
 .contact-form {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-}
-
-.contact-card-email:hover,
-.contact-card-linkedin:hover,
-.contact-card-phone:hover,
-.contact-card-resume:hover {
-  transform: translateY(-4px);
-  border-color: rgba(14, 165, 233, 0.4);
-  box-shadow: var(--shadow-card-hover);
-}
-
-/* Button styling within contact cards */
-.contact-card-email .btn-secondary,
-.contact-card-linkedin .btn-secondary,
-.contact-card-phone .btn-secondary,
-.contact-card-resume .btn-secondary {
-  margin-top: auto;
 }
 
 /* Form submit button pushed to bottom */
@@ -1043,17 +1019,17 @@ body:not(.page-home) .hero::before {
   .contact-cards {
     flex-direction: row;
     flex-wrap: wrap;
+    gap: var(--spacing-sm);
   }
 
   .contact-card {
-    flex: 1;
-    min-width: 200px;
-    min-height: 120px;
+    flex: 1 1 45%;
+    min-width: 45%;
     padding: var(--spacing-sm) var(--spacing-md);
   }
 
   .contact-card .btn-text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -1312,10 +1288,6 @@ footer p {
   }
 
   .feature-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-cards {
     grid-template-columns: 1fr;
   }
 
