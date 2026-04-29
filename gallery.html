@@ -15,7 +15,7 @@
             padding: 0;
         }
         .gallery-hero {
-            padding: 8rem 0 6rem 0;
+            padding: 6rem 0 6rem 0;
             text-align: center;
         }
         .gallery-hero p {
@@ -180,12 +180,14 @@
     <main class="gallery-page page-gallery">
         <section class="gallery-hero">
             <div class="container">
-                <h1>Visual Gallery</h1>
+                <div class="section-title">
+                    <h1>Gallery</h1>
+                </div>
                 <p>Engineering documentation, CAD designs, prototypes, and personal moments captured through the lens.</p>
             </div>
         </section>
 
-        <div class="gallery-nav">
+        <div class="gallery-nav" style="display: flex; justify-content: center; gap: var(--spacing-md); padding: var(--spacing-md) 0;">
             <button class="nav-button" id="prevBtn" aria-label="Scroll left">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
