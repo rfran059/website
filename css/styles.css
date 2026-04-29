@@ -1134,6 +1134,12 @@ footer p {
   margin-bottom: var(--spacing-md);
 }
 
+/* Center subtext paragraphs after section-title */
+.section-title ~ p {
+  display: inline-block;
+  max-width: 600px;
+}
+
 /* Stats Row */
 .stats-row {
   display: flex;
