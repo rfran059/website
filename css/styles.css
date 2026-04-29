@@ -1124,7 +1124,7 @@ footer p {
 
 /* Subtext spacing - applies to all pages (elements after section-title) */
 .section-title ~ p {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-2xl);
   margin-bottom: var(--spacing-lg);
 }
 
