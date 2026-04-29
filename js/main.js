@@ -40,6 +40,8 @@ function initMobileMenu() {
 // Scroll Animations with Intersection Observer
 function initScrollAnimations() {
   const cards = document.querySelectorAll('.card');
+  const galleryPanels = document.querySelectorAll('.gallery-panel');
+  const allElements = Array.from(cards).concat(galleryPanels);
 
   const observerOptions = {
     threshold: 0.1,
@@ -55,11 +57,11 @@ function initScrollAnimations() {
     });
   }, observerOptions);
 
-  cards.forEach(card => {
-    if (!card.classList.contains('visible')) {
-      observer.observe(card);
+  allElements.forEach(el => {
+    if (!el.classList.contains('visible')) {
+      observer.observe(el);
     } else {
-      card.classList.add('visible');
+      el.classList.add('visible');
     }
   });
 }

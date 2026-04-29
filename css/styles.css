@@ -821,6 +821,19 @@ body:not(.page-home) .hero::before {
 }
 
 /* Gallery - ensure horizontal scroll is always enforced */
+/* Gallery Section - wrapper for fade-in animation */
+.gallery-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .gallery-container {
   display: flex;
   overflow-x: auto;
@@ -1094,12 +1107,14 @@ footer p {
 .section-title {
   text-align: center;
   margin-bottom: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
 }
 
 .section-title h2 {
   position: relative;
   display: inline-block;
   padding-bottom: 0.75rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .section-title h2::after {
@@ -1112,6 +1127,12 @@ footer p {
   height: 3px;
   background: var(--gradient-accent);
   border-radius: 2px;
+}
+
+/* Consistent spacing after section titles on all pages */
+.section-title + p,
+.section-title + .text-center {
+  margin-top: var(--spacing-lg);
 }
 
 /* Stats Row */
@@ -1311,6 +1332,21 @@ footer p {
 
   .footer-links {
     gap: var(--spacing-md);
+  }
+
+  /* Mobile: section-title spacing */
+  .section-title {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .section-title h2 {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .section-title + p,
+  .section-title + .text-center {
+    margin-top: var(--spacing-md);
   }
 }
 
