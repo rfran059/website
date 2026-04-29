@@ -321,6 +321,22 @@ nav {
   color: var(--color-text-muted);
 }
 
+/* Disable mouse-follow effect on hero text */
+.hero h1 {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: none;
+  letter-spacing: -0.04em;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 /* Button Styles */
 .btn {
   display: inline-flex;
@@ -619,10 +635,28 @@ section {
 }
 
 /* Contact Section */
+/* Contact Cards */
 .contact-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: var(--grid-gap);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .contact-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Contact Cards in Bento Grid */
+.contact-cards {
+  margin-top: var(--spacing-md);
+}
+
+/* Stack contact panels properly */
+.contact-cards.bento {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 /* Footer */
@@ -890,6 +924,25 @@ footer p {
   text-align: center;
 }
 
+/* Skills List Styles */
+.skills-list {
+  padding: 0;
+  margin: 0;
+}
+
+.skills-category {
+  margin-bottom: 1.25rem;
+}
+
+.skills-category:last-child {
+  margin-bottom: 0;
+}
+
+.skills-category h4 {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
 .mt-sm {
   margin-top: var(--spacing-sm);
 }
@@ -942,6 +995,15 @@ footer p {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+}
+
+@media (min-width: 2000px) {
+  .gallery-container {
+    justify-content: center;
+    flex-wrap: wrap;
+    scroll-snap-type: none;
+    overflow-x: visible;
+  }
 }
 
 .gallery-container::-webkit-scrollbar {
