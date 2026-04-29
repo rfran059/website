@@ -1080,19 +1080,19 @@ body:not(.page-home) .hero::before {
   grid-template-columns: repeat(2, 1fr);
 }
 
-/* Contact form should level with the cards */
+/* Contact form - widened and raised higher */
 .contact-form {
   max-width: 100%;
   padding: 0;
-  padding-top: 80px; /* Align button with card buttons (260px card height - ~180px form content) */
+  padding-top: 100px; /* Raised higher and widened for better balance */
 }
 
-/* Contact cards with proper height to match form */
+/* Contact cards - increased height to prevent text wrap and improve visual weight */
 .contact-card-email,
 .contact-card-linkedin,
 .contact-card-phone,
 .contact-card-resume {
-  min-height: 260px;
+  min-height: 300px; /* Increased from 260px for more space */
   display: flex;
   flex-direction: column;
 }
