@@ -961,9 +961,11 @@ body:not(.page-home) .hero::before {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
+  width: 100%;
+  max-width: 55%;
 }
 
-/* Flat rectangular contact cards - skinnier, stacked vertically, button-like */
+/* Flat rectangular contact cards - skinnier, stacked vertically, non-interactive */
 .contact-card {
   display: flex;
   flex-direction: column;
@@ -972,17 +974,9 @@ body:not(.page-home) .hero::before {
   background: var(--color-surface);
   border: 1px solid rgba(30, 58, 95, 0.3);
   border-radius: var(--radius-lg);
-  text-decoration: none;
-  transition: all var(--transition-smooth);
   min-height: auto;
   text-align: center;
   align-items: center;
-}
-
-.contact-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(14, 165, 233, 0.4);
-  box-shadow: var(--shadow-card-hover);
 }
 
 .contact-card .metric-badge {
@@ -991,15 +985,21 @@ body:not(.page-home) .hero::before {
   margin-bottom: 0.25rem;
 }
 
+/* Only the button text is clickable */
 .contact-card .btn-text {
   font-weight: 600;
   color: var(--color-accent);
   margin-top: auto;
+  text-decoration: none;
   transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
-.contact-card:hover .btn-text {
+.contact-card .btn-text:hover {
   color: var(--color-accent-light);
+  text-decoration: underline;
 }
 
 .contact-card .btn-text::after {
@@ -1008,14 +1008,14 @@ body:not(.page-home) .hero::before {
   transition: opacity var(--transition-fast);
 }
 
-.contact-card:hover .btn-text::after {
+.contact-card .btn-text:hover::after {
   opacity: 1;
 }
 
 /* Contact form - full width container */
 .contact-form {
   width: 100%;
-  max-width: 500px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
