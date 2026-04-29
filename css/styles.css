@@ -133,6 +133,11 @@ video {
   padding: 0 var(--spacing-lg);
 }
 
+/* Remove container max-width for contact page - allows wider layout */
+.page-contact .container {
+  max-width: none;
+}
+
 /* Header & Navigation */
 header {
   position: sticky;
