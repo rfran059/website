@@ -40,33 +40,59 @@
     let currentPanel = null;
 
     /**
+     * Get the scroll distance for navigation buttons
+     */
+    function getScrollDistance() {
+      const firstPanel = panels[0];
+      if (!firstPanel) return 800;
+      const panelWidth = firstPanel.getBoundingClientRect().width;
+      return Math.round(panelWidth);
+    }
+
+    /**
      * Open the lightbox modal with gallery panel content
      */
     function openLightbox(panel) {
       if (!panel) return;
 
       currentPanel = panel;
-      const shortDesc = panel.getAttribute('data-short-description');
-      const caption = panel.querySelector('.gallery-caption');
-      const h4 = caption?.querySelector('h4');
-      const p = caption?.querySelector('p');
+      var shortDesc = panel.getAttribute('data-short-description');
+      var caption = panel.querySelector('.gallery-caption');
+      var h4 = caption ? caption.querySelector('h4') : null;
+      var p = caption ? caption.querySelector('p') : null;
 
-      // Extract colors from gradient background
-      const bgStyle = panel.style.background || '';
-      const gradientColors = extractGradientColors(bgStyle);
+      // Extract background style from panel
+      var bgStyle = panel.style.background || panel.style.backgroundColor || '';
 
       // Populate lightbox content
-      lightboxTitle.textContent = h4?.textContent || 'Gallery Item';
-      lightboxSubtitle.textContent = p?.textContent || '';
+      lightboxTitle.textContent = h4 ? h4.textContent : 'Gallery Item';
+      lightboxSubtitle.textContent = p ? p.textContent : '';
       lightboxDescription.textContent = shortDesc || '';
-      lightboxShort.textContent = p?.textContent || '';
+      lightboxShort.textContent = p ? p.textContent : '';
 
-      // Set image with gradient background
-      lightboxImage.src = bgStyle;
-      lightboxImage.alt = h4?.textContent || '';
+      // Display background in lightbox - use a styled div since panels
+      // don't have real images, they use gradient backgrounds
+      lightboxImage.style.background = bgStyle;
+      lightboxImage.style.display = 'flex';
+      lightboxImage.style.alignItems = 'center';
+      lightboxImage.style.justifyContent = 'center';
+
+      // Clear previous content and safely insert new elements
+      lightboxImage.replaceChildren();
+      var wrapper = document.createElement('div');
+      wrapper.style.cssText = 'text-align:center;padding:2rem;';
+      var titleEl = document.createElement('h3');
+      titleEl.style.cssText = 'color:#f1f5f9;font-size:2rem;margin:0 0 1rem;';
+      titleEl.textContent = h4 ? h4.textContent : 'Gallery Item';
+      var descEl = document.createElement('p');
+      descEl.style.cssText = 'color:#94a3b8;font-size:1.1rem;';
+      descEl.textContent = p ? p.textContent : '';
+      wrapper.appendChild(titleEl);
+      wrapper.appendChild(descEl);
+      lightboxImage.appendChild(wrapper);
 
       // Add active class to panel
-      panels.forEach((panelEl) => panelEl.classList.remove('active-panel'));
+      panels.forEach(function(panelEl) { panelEl.classList.remove('active-panel'); });
       panel.classList.add('active-panel');
 
       // Close any open modal first
@@ -75,7 +101,7 @@
       }
 
       // Open modal with fade-in animation
-      setTimeout(() => {
+      setTimeout(function() {
         lightboxModal.classList.add('active');
       }, 100);
 
@@ -98,20 +124,10 @@
     }
 
     /**
-     * Extract colors from CSS gradient string
-     * Returns an array of hex color values
-     */
-    function extractGradientColors(gradient) {
-      // Simple extraction of hex colors from gradient
-      const hexMatch = gradient.match(/#[0-9a-fA-F]{3,6}/g);
-      return hexMatch || [];
-    }
-
-    /**
      * Handle panel click events
      */
-    panels.forEach(panel => {
-      panel.addEventListener('click', () => {
+    panels.forEach(function(panel) {
+      panel.addEventListener('click', function() {
         openLightbox(panel);
       });
     });
@@ -126,7 +142,7 @@
     /**
      * Close on outside click of modal
      */
-    lightboxModal.addEventListener('click', (e) => {
+    lightboxModal.addEventListener('click', function(e) {
       if (e.target === lightboxModal) {
         closeLightbox();
       }
@@ -135,7 +151,7 @@
     /**
      * Close on Escape key
      */
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
         closeLightbox();
       }
@@ -145,14 +161,14 @@
      * Navigation buttons
      */
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        container.scrollBy({ left: -800, behavior: 'smooth' });
+      prevBtn.addEventListener('click', function() {
+        container.scrollBy({ left: -getScrollDistance(), behavior: 'smooth' });
       });
     }
 
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        container.scrollBy({ left: 800, behavior: 'smooth' });
+      nextBtn.addEventListener('click', function() {
+        container.scrollBy({ left: getScrollDistance(), behavior: 'smooth' });
       });
     }
   }
@@ -160,9 +176,9 @@
   // Export for module systems
   if (typeof window !== 'undefined') {
     window.Gallery = {
-      init,
-      openLightbox,
-      closeLightbox
+      init: init,
+      openLightbox: openLightbox,
+      closeLightbox: closeLightbox
     };
   }
 })();

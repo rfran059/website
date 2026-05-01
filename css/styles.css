@@ -343,6 +343,8 @@ body:not(.page-home) .hero h1 {
   border: none;
   transition: all var(--transition-smooth);
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:focus {
@@ -352,6 +354,25 @@ body:not(.page-home) .hero h1 {
 .btn:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
+}
+
+/* Button Gradient Shimmer */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .btn-primary {
@@ -403,20 +424,6 @@ section {
   padding: var(--spacing-xl) 0;
 }
 
-/* Increase spacing after hero for non-home pages (main content sections) */
-.hero + .container.section-spaced {
-  padding-top: calc(var(--spacing-2xl) + var(--spacing-xl));
-}
-
-/* Home page - increase spacing after hero specifically */
-.hero ~ .container {
-  padding-top: calc(var(--spacing-2xl) * 1.5);
-}
-
-.hero ~ .container:first-of-type {
-  padding-top: calc(var(--spacing-2xl) * 2);
-}
-
 /* Home page body - smooth gradient fade from top to bottom */
 .page-home body {
   background:
@@ -436,7 +443,8 @@ section {
   50% { background-position: 100% 50%; }
 }
 
-.page-home .hero::before {
+/* Hero aurora background - all pages */
+.hero::before {
   content: '';
   position: absolute;
   top: -50%;
@@ -446,25 +454,16 @@ section {
   background:
     radial-gradient(ellipse at 20% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 50%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 20%, rgba(14, 165, 233, 0.04) 0%, transparent 60%);
+    radial-gradient(ellipse at 50% 20%, rgba(14, 165, 233, 0.04) 0%, transparent 60%),
+    linear-gradient(to bottom, rgba(14, 165, 233, 0.03) 0%, transparent 100%);
   animation: aurora 20s ease-in-out infinite;
   z-index: -1;
+  pointer-events: none;
 }
 
-/* Aurora effect for non-home pages */
-body:not(.page-home) .hero::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 50%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 20%, rgba(14, 165, 233, 0.04) 0%, transparent 60%);
-  animation: aurora 20s ease-in-out infinite;
-  z-index: -1;
+@keyframes aurora {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(3deg) scale(1.05); }
 }
 
 /* Bento Grid Layout */
@@ -519,6 +518,7 @@ body:not(.page-home) .hero::before {
   }
 }
 
+/* Card Styles */
 .card {
   background: var(--color-surface);
   border: 1px solid rgba(30, 58, 95, 0.3);
@@ -530,6 +530,11 @@ body:not(.page-home) .hero::before {
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease;
 }
 
 .card::before {
@@ -542,6 +547,11 @@ body:not(.page-home) .hero::before {
   background: var(--gradient-accent);
   opacity: 0;
   transition: opacity var(--transition-fast);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card:hover {
@@ -651,7 +661,7 @@ body:not(.page-home) .hero::before {
 }
 
 .status-production {
-  background: rgba(16, 185, 129, 0.25); /* Increased opacity for better contrast */
+  background: rgba(16, 185, 129, 0.25);
   color: #4ade80;
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
@@ -683,21 +693,7 @@ body:not(.page-home) .hero::before {
   }
 }
 
-/* Card Animation */
-.card {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.4s ease;
-}
-
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* About Description Panel - Unified styles (removed duplicate at line 794) */
+/* Timeline */
 .timeline {
   position: relative;
   padding: var(--spacing-lg) 0;
@@ -808,9 +804,6 @@ body:not(.page-home) .hero::before {
   color: var(--color-text-main);
 }
 
-/* Gallery page section-title uses default h2 styling (same as contact and other pages) */
-/* No override needed - h2 inherits clamp(2rem, 4vw, 3rem) from base styles */
-
 .page-about .main-text-panel p,
 .page-projects .main-text-panel p,
 .page-gallery .main-text-panel p,
@@ -819,7 +812,9 @@ body:not(.page-home) .hero::before {
   line-height: 1.7;
 }
 
-/* Gallery - ensure horizontal scroll is always enforced */
+/* Gallery page section-title uses default h2 styling */
+/* No override needed - h2 inherits clamp(2rem, 4vw, 3rem) from base styles */
+
 /* Gallery Section - visible without animation */
 .gallery-section {
   opacity: 1;
@@ -852,33 +847,13 @@ body:not(.page-home) .hero::before {
   }
 }
 
-
-/* Standard section spacing - already defined above */
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 50%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 20%, rgba(14, 165, 233, 0.04) 0%, transparent 60%),
-    linear-gradient(to bottom, rgba(14, 165, 233, 0.03) 0%, transparent 100%);
-  animation: aurora 20s ease-in-out infinite;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Increase spacing for sections below home hero */
+/* Home page - increase spacing after hero specifically */
 .hero ~ .container {
-  padding-top: var(--spacing-3xl);
+  padding-top: calc(var(--spacing-2xl) * 1.5);
 }
 
-.hero ~ .container:first-child {
-  padding-top: calc(var(--spacing-3xl) + var(--spacing-lg));
+.hero ~ .container:first-of-type {
+  padding-top: calc(var(--spacing-2xl) * 2);
 }
 
 @media (max-width: 768px) {
@@ -961,7 +936,7 @@ body:not(.page-home) .hero::before {
   margin-bottom: var(--spacing-xl);
 }
 
-/* Contact cards container - uses grid layout parent for side-by-side with form */
+/* Contact cards container - side-by-side with form */
 .contact-cards {
   display: flex;
   flex-direction: column;
@@ -1025,7 +1000,6 @@ body:not(.page-home) .hero::before {
   }
 }
 
-
 .contact-form .form-group {
   margin-bottom: 0;
 }
@@ -1042,7 +1016,7 @@ body:not(.page-home) .hero::before {
 .contact-form textarea,
 .contact-form select {
   width: 100%;
-  padding: 0.85rem 1.5rem; /* Widen padding for larger text boxes */
+  padding: 0.85rem 1.5rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -1061,7 +1035,7 @@ body:not(.page-home) .hero::before {
 }
 
 .contact-form textarea {
-  min-height: 150px; /* Taller textarea */
+  min-height: 150px;
   resize: vertical;
 }
 
@@ -1069,13 +1043,12 @@ body:not(.page-home) .hero::before {
 .contact-form textarea::placeholder {
   color: var(--color-text-subtle);
 }
-/* Removed duplicate .contact-form max-width/margin definition at line 1049-1052 */
 
 /* Footer */
 footer {
   padding: var(--spacing-2xl) 0;
   text-align: center;
-  background: #060a10; /* Darker than main bg */
+  background: #060a10;
   border-top: 1px solid var(--color-border);
   margin-top: var(--spacing-2xl);
   color: var(--color-text-subtle);
@@ -1133,18 +1106,6 @@ footer p {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-}
-
-/* Gallery hero subtext - no extra margin (uses different spacing) */
-.page-gallery .gallery-hero .container p {
-  margin-top: 0;
-  margin-bottom: var(--spacing-md);
-}
-
-/* Gallery hero subtext - no extra margin (uses different spacing) */
-.page-gallery .gallery-hero .container p {
-  margin-top: 0;
-  margin-bottom: var(--spacing-md);
 }
 
 /* Gallery hero subtext - no extra margin (uses different spacing) */
@@ -1219,7 +1180,6 @@ footer p {
 .dwg-accent-text { fill: var(--color-accent-light); font-family: 'JetBrains Mono', monospace; font-size: 7px; }
 .dwg-bar { fill: rgba(14, 165, 233, 0.6); }
 .dwg-bar-teal { fill: rgba(6, 182, 212, 0.5); }
-/* Duplicate .form-group styles removed - contact-form styles already define these */
 
 .form-success {
   display: none;
@@ -1253,7 +1213,7 @@ footer p {
   display: block;
 }
 
-/* Gallery Page Inline Styles - moved from gallery.html */
+/* Gallery Page Inline Styles */
 .gallery-page {
   padding: 0;
 }
@@ -1408,7 +1368,7 @@ footer p {
 .featured-subtext,
 .feature-subtext {
   max-width: 600px;
-  margin: 0 auto 1.5rem auto; /* Reduced from 3rem for closer spacing to grid */
+  margin: 0 auto 1.5rem auto;
   text-align: center;
   width: 100%;
   margin-left: auto;
@@ -1590,8 +1550,6 @@ footer p {
   background: var(--color-accent);
 }
 
-/* Removed duplicate gallery-page definition - already defined at line 1257 */
-
 .page-gallery .card p {
   font-size: 1.05rem;
   line-height: 1.7;
@@ -1710,69 +1668,6 @@ footer p {
 @keyframes gradientShimmer {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-}
-
-/* Enhanced Card Hover Effect */
-.card {
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gradient-accent);
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
-/* Smooth Navigation Underline */
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gradient-accent);
-  transition: width var(--transition-smooth);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
-}
-
-/* Button Gradient Shimmer */
-.btn {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.btn:hover::before {
-  width: 300px;
-  height: 300px;
 }
 
 /* Lightbox Modal Styles */

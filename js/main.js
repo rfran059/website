@@ -14,7 +14,7 @@ function initMobileMenu() {
   hamburger.addEventListener('click', () => {
     const isActive = hamburger.classList.toggle('active');
     navLinks.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isActive);
+    hamburger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
   });
 
   // Close menu when clicking a link
@@ -26,7 +26,7 @@ function initMobileMenu() {
     });
   });
 
-  // ESC key closes menu (single listener)
+  // ESC key closes menu
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && hamburger.classList.contains('active')) {
       hamburger.classList.remove('active');
@@ -37,19 +37,7 @@ function initMobileMenu() {
 }
 
 // Scroll Animations with Intersection Observer
-// Handles card reveals, gallery panel animations, and section fade-ins
 function initScrollAnimations() {
-  // Track observed elements to prevent re-observing sections after fade-in completes
-  const observedSections = new Set();
-
-  // Card and gallery panel reveal animation
-  const cards = document.querySelectorAll('.card');
-  const galleryPanels = document.querySelectorAll('.gallery-panel');
-  const cardElements = Array.from(cards).concat(galleryPanels);
-
-  // Section fade-in animation for sections below hero
-  const sections = document.querySelectorAll('section:not(.hero)');
-
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -60px 0px'
@@ -57,34 +45,24 @@ function initScrollAnimations() {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting && !entry.target.classList.contains('fade-in-section')) {
-        // Handle cards and gallery panels - add visible class and stop observing
+      if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      } else if (entry.isIntersecting && entry.target.classList.contains('fade-in-section')) {
-        // Handle section fade-ins - add visible class and prevent re-observation
-        entry.target.classList.add('visible');
-        observedSections.add(entry.target);
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
   // Observe cards and gallery panels
-  cardElements.forEach(el => {
+  document.querySelectorAll('.card, .gallery-panel, .fade-in-section').forEach(el => {
     if (!el.classList.contains('visible')) {
       observer.observe(el);
-    } else {
-      el.classList.add('visible');
     }
   });
 
-  // Observe sections for fade-in animation
-  sections.forEach(section => {
-    if (!section.classList.contains('visible') && !observedSections.has(section)) {
+  // Observe sections for fade-in animation (skip hero)
+  document.querySelectorAll('section:not(.hero)').forEach(section => {
+    if (!section.classList.contains('visible')) {
       observer.observe(section);
-    } else if (section.classList.contains('visible')) {
-      section.classList.add('visible');
     }
   });
 }
@@ -100,7 +78,6 @@ function initContactForm() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Prevent multiple submissions
     if (isSubmitting) {
       return;
     }
@@ -127,12 +104,12 @@ function initContactForm() {
 
     // Build mailto link
     const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`
+      'Name: ' + name + '\nEmail: ' + email + '\nSubject: ' + subject + '\n\n' + message
     );
-    const subjectLine = encodeURIComponent(`Portfolio Contact: ${subject}`);
-    const mailtoUrl = `mailto:hello@russellfranklin.github.io?subject=${subjectLine}&body=${body}`;
+    const subjectLine = encodeURIComponent('Portfolio Contact: ' + subject);
+    const mailtoUrl = 'mailto:rfran059@ucr.edu?subject=' + subjectLine + '&body=' + body;
 
-    // Show success message after a brief delay to give user feedback
+    // Show success message
     if (successMsg) {
       setTimeout(() => {
         successMsg.classList.add('show');
@@ -145,26 +122,21 @@ function initContactForm() {
       }, 300);
     }
 
-    // Open mailto client - wrapped in try-catch for browser compatibility
+    // Open mailto client
     try {
       window.location.href = mailtoUrl;
     } catch (err) {
       isSubmitting = false;
-      showFormError('Failed to open email client. Please try manually sending an email to hello@russellfranklin.github.io');
+      showFormError('Failed to open email client. Please try manually sending an email to rfran059@ucr.edu');
       console.error('Mailto error:', err);
     }
   });
 
-  /**
-   * Show error message to user
-   */
   function showFormError(errorMessage) {
-    // Hide success message if showing
     if (successMsg) {
       successMsg.classList.remove('show');
     }
 
-    // Create temporary error message element
     const errorContainer = form.closest('.container');
     if (errorContainer) {
       const errorDiv = document.createElement('div');
@@ -173,7 +145,6 @@ function initContactForm() {
       errorDiv.textContent = errorMessage;
       errorContainer.insertBefore(errorDiv, errorContainer.firstChild);
 
-      // Remove error after 5 seconds
       setTimeout(() => {
         errorDiv.remove();
       }, 5000);
