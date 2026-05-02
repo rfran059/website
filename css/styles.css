@@ -766,24 +766,10 @@ section {
   padding-bottom: 0;
 }
 
-.about-interests strong {
-  color: var(--color-text-main);
-  font-weight: 600;
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.about-interests p {
-  font-size: 0.9rem;
-  margin-bottom: 0;
-  color: var(--color-text-muted);
-}
-
 /* Standard paragraph styles for all pages except home */
 .page-about .card p,
 .page-projects .card p,
 .page-gallery .card p,
-.page-contact .card p,
 .page-about .about-description p,
 .page-projects .about-description p,
 .page-gallery .about-description p,
@@ -792,24 +778,6 @@ section {
   line-height: 1.7;
   color: var(--color-text-muted);
   margin-bottom: var(--spacing-md);
-}
-
-/* Standardize text sizes for main content panels (non-home pages) */
-.page-about .main-text-panel h2,
-.page-projects .main-text-panel h2,
-.page-gallery .main-text-panel h2,
-.page-contact .main-text-panel h2 {
-  font-size: 1.5rem;
-  line-height: 1.4;
-  color: var(--color-text-main);
-}
-
-.page-about .main-text-panel p,
-.page-projects .main-text-panel p,
-.page-gallery .main-text-panel p,
-.page-contact .main-text-panel p {
-  font-size: 1.05rem;
-  line-height: 1.7;
 }
 
 /* Gallery page section-title uses default h2 styling */
@@ -918,8 +886,7 @@ section {
 }
 
 /* Contact Section */
-/* Standard contact card heading for non-home pages */
-.page-contact .card h3,
+/* Standard card heading for non-home pages */
 .page-about .card h3,
 .page-projects .card h3,
 .page-gallery .card h3 {
@@ -942,10 +909,9 @@ section {
   flex-direction: column;
   gap: var(--spacing-sm);
   width: 100%;
-  max-width: 80%;
 }
 
-/* Flat rectangular contact cards - skinnier, stacked vertically, non-interactive */
+/* Flat rectangular contact cards - skinnier, stacked vertically */
 .contact-card {
   display: flex;
   flex-direction: column;
@@ -963,6 +929,89 @@ section {
   display: block;
   width: 100%;
   margin-bottom: 0.25rem;
+}
+
+/* Contact card paragraphs (no hover on card wrapper) */
+.contact-card .card-description {
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+}
+
+/* Contact cards with .card class get animation but keep original styling */
+.contact-card.card {
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  box-shadow: none;
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color var(--transition-fast);
+  opacity: 0;
+  transform: translateY(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.contact-card.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-card.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(14, 165, 233, 0.3);
+}
+
+/* Contact form as card */
+.contact-form.card {
+  background: var(--color-surface);
+  border: 1px solid rgba(30, 58, 95, 0.3);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-subtle);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.contact-form.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.contact-form.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-form.card:hover {
+  border-color: rgba(14, 165, 233, 0.3);
+}
+
+.contact-form.card:hover::before {
+  opacity: 0.5;
 }
 
 /* Contact form - full width container */
@@ -1088,7 +1137,7 @@ footer p {
 /* Subtext spacing - applies to all pages (elements after section-title) */
 /* For pages where p is direct child of .section-title (like projects.html) */
 .section-title > p {
-  margin-top: var(--spacing-2xl);
+  margin-top: 1.25rem;
   margin-bottom: var(--spacing-lg);
   display: block;
   max-width: 600px;
@@ -1098,8 +1147,11 @@ footer p {
 }
 
 /* For pages where p is direct child of section (like contact.html) */
-.section-title ~ section > p {
-  margin-top: var(--spacing-2xl);
+.page-about .section-title ~ p,
+.page-projects .section-title ~ p,
+.page-gallery .section-title ~ p,
+.page-contact .section-title ~ p {
+  margin-top: 1.25rem;
   margin-bottom: var(--spacing-lg);
   display: block;
   max-width: 600px;
@@ -1332,14 +1384,6 @@ footer p {
   margin-bottom: var(--spacing-md);
 }
 
-.about-division:last-of-type {
-  border-bottom: none;
-}
-
-.about-division:last-child {
-  padding-bottom: 0;
-}
-
 .about-interest-strong {
   color: var(--color-text-main);
   font-weight: 600;
@@ -1365,8 +1409,7 @@ footer p {
 }
 
 /* Featured Subtext */
-.featured-subtext,
-.feature-subtext {
+.featured-subtext {
   max-width: 600px;
   margin: 0 auto 1.5rem auto;
   text-align: center;
@@ -1492,30 +1535,6 @@ footer p {
   text-align: center;
 }
 
-/* Skills panel specific overrides */
-.skills-panel .skills-category div {
-  width: 100%;
-}
-
-/* Skills List Styles */
-.skills-list {
-  padding: 0;
-  margin: 0;
-}
-
-.skills-category {
-  margin-bottom: 1.25rem;
-}
-
-.skills-category:last-child {
-  margin-bottom: 0;
-}
-
-.skills-category h4 {
-  font-size: 0.85rem;
-  margin-bottom: 0.5rem;
-}
-
 .mt-sm {
   margin-top: var(--spacing-sm);
 }
@@ -1548,12 +1567,6 @@ footer p {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
-}
-
-.page-gallery .card p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--color-text-muted);
 }
 
 /* Gallery Panel */
