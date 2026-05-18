@@ -1098,8 +1098,13 @@ footer p {
 /* Section Titles */
 .section-title {
   text-align: center;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 0;
   margin-top: 0;
+}
+
+/* Home page keeps larger spacing */
+.page-home .section-title {
+  margin-bottom: var(--spacing-xl);
 }
 
 .section-title h2 {
