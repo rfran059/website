@@ -1112,7 +1112,7 @@ footer p {
   position: relative;
   display: inline-block;
   padding-bottom: 0.75rem;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0;
 }
 
 .section-title h2::after {
@@ -1127,8 +1127,10 @@ footer p {
   border-radius: 2px;
 }
 
-/* Subtext — gallery page (subtext is sibling of section-title) */
-.page-gallery .section-title ~ p {
+/* Subtext — standardized across all inner pages */
+.page-gallery .section-title ~ p,
+.page-contact .section-title ~ p,
+.page-projects .section-title p {
   margin-top: 0.75rem;
   margin-bottom: 2.5rem;
   max-width: 600px;
@@ -1140,30 +1142,11 @@ footer p {
   color: var(--color-text-muted);
 }
 
-/* Subtext — contact page (subtext is sibling of section-title) */
-.page-contact .section-title ~ p {
-  margin-top: 0.25rem;
-  margin-bottom: 2.5rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--color-text-muted);
-}
-
-/* Subtext — projects page (subtext is child of section-title) */
-.page-projects .section-title p {
-  margin-top: 1.25rem;
-  margin-bottom: 2.5rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--color-text-muted);
+/* Inner pages: remove h2 margin so only p margin-top controls gap */
+.page-gallery .section-title h2,
+.page-contact .section-title h2,
+.page-projects .section-title h2 {
+  margin-bottom: 0;
 }
 
 /* Home page Featured Projects subtext */
