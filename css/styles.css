@@ -837,7 +837,7 @@ section {
 /* Feature Subtext */
 .feature-subtext {
   max-width: 600px;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 2.5rem auto;
 }
 
 /* Spacer utility */
@@ -1403,7 +1403,7 @@ footer p {
 /* Featured Subtext */
 .featured-subtext {
   max-width: 600px;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 2.5rem auto;
   text-align: center;
   width: 100%;
   margin-left: auto;
