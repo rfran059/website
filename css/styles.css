@@ -422,9 +422,13 @@ section {
 /* Non-home pages use smaller section padding */
 .page-about section,
 .page-projects section,
-.page-gallery section,
 .page-contact section {
   padding: var(--spacing-xl) 0;
+}
+
+.page-gallery section {
+  padding-top: 0;
+  padding-bottom: var(--spacing-2xl);
 }
 
 /* Home page body - dark, hero has its own background gradient */
