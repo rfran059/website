@@ -1265,8 +1265,8 @@ footer p {
   padding: 0;
 }
 
-.gallery-hero {
-  padding: 0 0 1rem 0;
+.page-gallery .gallery-hero {
+  padding: 4rem 0 1rem 0;
   text-align: center;
 }
 
