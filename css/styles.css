@@ -422,9 +422,12 @@ section {
 /* Non-home pages use smaller section padding */
 .page-about section,
 .page-projects section,
-.page-gallery section,
 .page-contact section {
   padding: var(--spacing-xl) 0;
+}
+
+.page-gallery section {
+  padding: 0 0 var(--spacing-2xl) 0;
 }
 
 /* Home page body - dark, hero has its own background gradient */
@@ -786,7 +789,7 @@ section {
   overflow-x: auto;
   overflow-y: hidden;
   gap: var(--spacing-md);
-  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg);
+  padding: 0 var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg);
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
