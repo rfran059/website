@@ -1278,6 +1278,7 @@ footer p {
   justify-content: center;
   gap: var(--spacing-md);
   padding: var(--spacing-sm) 0;
+  margin-bottom: 1rem;
 }
 
 .nav-button {
