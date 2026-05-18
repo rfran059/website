@@ -1107,6 +1107,7 @@ footer p {
   margin-bottom: var(--spacing-xl);
 }
 
+/* H2 title styling - consistent across all pages */
 .section-title h2 {
   position: relative;
   display: inline-block;
@@ -1126,36 +1127,49 @@ footer p {
   border-radius: 2px;
 }
 
-/* Subtext spacing - applies to all pages (elements after section-title) */
-.page-about .section-title ~ p,
-.page-projects .section-title ~ p,
+/* Subtext — inner pages where subtext is sibling of section-title (gallery, contact) */
 .page-gallery .section-title ~ p,
 .page-contact .section-title ~ p {
-  margin-top: 1.25rem;
-  margin-bottom: var(--spacing-lg);
-  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 2.5rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
 }
 
-/* Home page Featured Projects subtext - tighter spacing */
+/* Subtext — projects page (subtext is child of section-title) */
+.page-projects .section-title p {
+  margin-top: 0.75rem;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* Home page Featured Projects subtext */
 .page-home .section-title ~ p.feature-subtext {
   margin-top: 0.25rem !important;
   margin-bottom: 1.5rem !important;
 }
 
-/* Home page Engineering Philosophy subtext - also tighter */
+/* Home page Engineering Philosophy subtext */
 .page-home .container.section-spaced .section-title ~ p {
   margin-top: 0.25rem !important;
   margin-bottom: 1.5rem !important;
 }
 
-/* Gallery hero subtext - no extra margin (uses different spacing) */
-.page-gallery .gallery-hero .container p {
-  margin-top: 0;
-  margin-bottom: var(--spacing-md);
+/* Home page subtext inside section-title */
+.page-home .section-title p {
+  margin-top: 0.25rem !important;
+  margin-bottom: 1.5rem !important;
 }
 
 /* Stats Row */
@@ -1263,18 +1277,8 @@ footer p {
 }
 
 .gallery-hero {
-  padding: 4rem 0 1rem 0;
+  padding: 6rem 0 4rem 0;
   text-align: center;
-}
-
-.gallery-hero .section-title {
-  margin-bottom: 0.5rem;
-}
-
-.gallery-hero p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--color-text-muted);
 }
 
 .gallery-nav {
