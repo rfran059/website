@@ -1106,10 +1106,7 @@ footer p {
   margin-top: 0;
 }
 
-/* Home page keeps larger spacing */
-.page-home .section-title {
-  margin-bottom: var(--spacing-xl);
-}
+/* All pages use consistent section-title spacing */
 
 /* H2 title styling - consistent across all pages */
 .section-title h2 {
@@ -1153,22 +1150,18 @@ footer p {
   margin-bottom: 0;
 }
 
-/* Home page Featured Projects subtext */
-.page-home .section-title ~ p.feature-subtext {
-  margin-top: 0.25rem !important;
-  margin-bottom: 1.5rem !important;
-}
-
-/* Home page Engineering Philosophy subtext */
-.page-home .container.section-spaced .section-title ~ p {
-  margin-top: 0.25rem !important;
-  margin-bottom: 1.5rem !important;
-}
-
-/* Home page subtext inside section-title */
-.page-home .section-title p {
-  margin-top: 0.25rem !important;
-  margin-bottom: 1.5rem !important;
+/* Home page subtext — matches inner pages */
+.page-home .section-title ~ p.feature-subtext,
+.page-home .section-title ~ p.featured-subtext {
+  margin-top: 0.75rem;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
 }
 
 /* Stats Row */
